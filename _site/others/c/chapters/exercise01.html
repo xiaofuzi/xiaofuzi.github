@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>笨方法学习C语言（中文版）</title>
+   <meta name="author" content="小福的博客" />
+ 
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+   <script type="text/javascript" src="/js/name.js"></script>
+
+</head>
+<body>
+
+
+
+<div class="site">
+  <div class="title">
+    <a href="/">小福</a>
+    <a class="extra" href="/">首页</a>
+    
+    <a class="extra" href="/others/mywebsites.html">Love websites</a>
+  </div>
+ 
+  <div id="post">
+<h1>练习1：C编译器使用</h1>
+
+<p>下面是一个简单的C程序：</p>
+
+<pre><code>int main(int argc, char* argv[ ])
+{
+    puts("Hello world.");
+    return 0;
+}
+</code></pre>
+
+<p>将上述代码写到 ex1.c文件，然后就可以使用如下命令进行编译：</p>
+
+<pre><code>$make ex1
+cc ex1.c -o ex1
+</code></pre>
+
+<p>也许你的电脑所使用的命令会有些轻微的区别，但最后都会得到一个名为ex1的可运行的文件。</p>
+
+<h1>你将会看到的输出结果</h1>
+
+<p>现在你可以运行这个程序并看它输出了什么。</p>
+
+<pre><code>$./ex1
+Hello world.
+</code></pre>
+
+<p>如果你得到的结果与上述结果不同的话，请回到前面找出错误并修复。</p>
+
+<h1>如何打破它？</h1>
+
+<p>在本书中我会为每个程序增加一个小的环节来让你理解得更深。在这个环节我会让对程序做一些奇怪的处理，以奇怪的方式运行或者是改变部分的代码，这样你可以按到程序运行崩溃和编译产生的错误。</p>
+
+<p>对于这个程序，重新编译它，你会发现有警告信息出现：</p>
+
+<pre><code>$ rm ex1
+$ CFLAGS="-Wall" make ex1
+cc -Wall    ex1.c   -o ex1
+ex1.c: In function 'main':
+ex1.c:3: warning: implicit declaration of function 'puts'
+$ ./ex1
+Hello world.
+</code></pre>
+
+<p> 你会得到一个警告信息说"puts"这个函数没有声明。有时候对于一些轻微的问题C编译器能更帮你自动解决，但你应该尽可能的移除一切的警告信息。在ex1.c文件中的顶部添加如下一行代码然后重新编译，上述的警告问题就可以解决了。</p>
+
+<pre><code> #include&lt;stdio.h&gt;
+</code></pre>
+
+<p>重新编译并运行，你就会发现警告信息已经没有了。</p>
+
+<h1>课外练习</h1>
+
+<ul>
+<li>打开ex1.c文件，随意删除一部分然后编译运行，看看会发生什么？</li>
+<li>打印出超过5行的比“Hello world” 更加复杂的句子。</li>
+<li>运行3个puts函数并查找资料理解该函数及相关函数的信息。</li>
+</ul>
+
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+  </ul>
+</div>
+  
+  <div class="footer">
+    <div class="contact">
+      <p>
+        xiaofuzi<br />
+        Cofounder of <a href="http://github.com/">GitHub</a>
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="http://github.com/xiaofuzi/">github.com/xiaofuzi</a><br />
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

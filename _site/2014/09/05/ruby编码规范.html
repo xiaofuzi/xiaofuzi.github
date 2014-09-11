@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Ruby 编码风格指南(转)</title>
+   <meta name="author" content="小福的博客" />
+ 
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+   <script type="text/javascript" src="/js/name.js"></script>
+
+</head>
+<body>
+
+
+
+<div class="site">
+  <div class="title">
+    <a href="/">小福</a>
+    <a class="extra" href="/">首页</a>
+    
+    <a class="extra" href="/others/mywebsites.html">Love websites</a>
+  </div>
+ 
+  <div id="post">
+<h1>Ruby 编码风格指南(转)</h1>
+
+<p>本篇文章是我在学习ruby的过程中看到的，转自<a href="https://github.com/JuanitoFatas/ruby-style-guide">JuanitoFaras</a>.</p>
+
+<h1>序幕</h1>
+
+<blockquote><p>是风格区分了好和伟大。 <br/>
+-- Bozhidar Batsov</p></blockquote>
+
+<p>作为 Ruby 开发者，有一件总是令我烦心的事 &mdash; Python 开发者有一份好的编程风格参考指南(<a href="http://www.python.org/dev/peps/pep-0008/">PEP-8</a>) 而我们永远没有一份官方指南，一份记录 Ruby 编程风格及最佳实践的指南。而我们确信风格很重要。我也相信这些好家伙们，像我们这些 Ruby 开发者，应该可以自己写一份这个梦寐以求的文档。</p>
+
+<p>这份指南开始是作为我们公司内部 Ruby 编程指南(由我所写的)。进行到某个部分时，我决定要把我的成果贡献给广大的 Ruby 社区，而且这个世界需要从另一个公司内部的一点帮助。然而这个世界也可以从由社区制定及策动的一系列 Ruby 编程惯例、实践及风格中受益。</p>
+
+<p>在开始写这份指南时，我收到世界上很多优秀 Ruby 社区用户们的反馈。感谢所有的建议及帮助！我们同心协力创造一个能够让每一个 Ruby 开发者受益的资源。</p>
+
+<p>顺道一提，如果你对 Rails 感兴趣，你可以看看这份互补的 <a href="https://github.com/bbatsov/rails-style-guide">Ruby on Rails 3 风格指南</a>。</p>
+
+<h1>Ruby 风格指南</h1>
+
+<p>这份 Ruby 风格指南向你推荐现实世界中的最佳实践，Ruby 程序员如何写出可被别的 Ruby 程序员维护的代码。一份风格指南反映出现实世界中的用法，并带有一个理想，避免已经公认是危险的事物不被人继续使用 –– 不管看起来是多么的好。</p>
+
+<p>本指南依照相关规则分成数个小节。我尽力在规则后面说明理由（如果省略的话，我相信理由是显而易见的）。</p>
+
+<p>我没有想到所有的规则 &mdash; 他们大致上是基于，我作为一个专业软体工程师的广泛生涯，从 Ruby 社区成员所得到的反馈及建议，和数个高度评价的 Ruby 编程资源，像是 <a href="http://pragprog.com/book/ruby4/programming-ruby-1-9-2-0">"Programming Ruby 1.9"</a> 以及 <a href="http://www.amazon.com/Ruby-Programming-Language-David-Flanagan/dp/0596516177">"The Ruby Programming Language"</a>。</p>
+
+<p>本指南仍在完善中 — 某些规则缺乏实例，某些规则没有例子来清楚地演示它们。在最后交付时，将会解决这些议题 — 现在就先把它们记在心理吧。</p>
+
+<p>你可以使用 <a href="https://github.com/TechnoGate/transmuter">Transmuter</a> 来产生本指南的一份 PDF 或 HTML 复本。</p>
+
+<p><a href="https://github.com/bbatsov/rubocop">rubocop</a> 项目会自动检查你的 Ruby 代码是否符合这份 Ruby 风格指南。目前这个项目尚有许多功能缺漏，不足以被正式地使用，欢迎有志之士协助改进。</p>
+
+<p>本指南被翻译成下列语言：</p>
+
+<ul>
+<li><a href="https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhCN.md">简体中文</a></li>
+<li><a href="https://github.com/JuanitoFatas/ruby-style-guide/blob/master/README-zhTW.md">繁體中文</a></li>
+<li><a href="https://github.com/porecreat/ruby-style-guide/blob/master/README-frFR.md">法文</a></li>
+</ul>
+
+
+<h2>目录</h2>
+
+<ul>
+<li><a href="#-2">源代码排版</a></li>
+<li><a href="#-3">语法</a></li>
+<li><a href="#-4">命名</a></li>
+<li><a href="#-5">注释</a>
+
+<ul>
+<li><a href="#-6">注解</a></li>
+</ul>
+</li>
+<li><a href="#-7">类别</a></li>
+<li><a href="#-8">异常</a></li>
+<li><a href="#-9">集合</a></li>
+<li><a href="#-10">字符串</a></li>
+<li><a href="#-11">正则表达式</a></li>
+<li><a href="#-12">百分比字面</a></li>
+<li><a href="#-13">元编程</a></li>
+<li><a href="#-14">其它</a></li>
+<li><a href="#-15">工具</a></li>
+</ul>
+
+
+<h2>源代码排版</h2>
+
+<blockquote><p>几乎每人都深信，每一个除了自己的风格都又丑又难读。把 "除了自己的" 拿掉，他们或许是对的...<br/>
+-- Jerry Coffin (论缩排)</p></blockquote>
+
+<ul>
+<li>使用 <code>UTF-8</code> 作为源文件的编码。</li>
+<li><p>每个缩排层级使用两个 <strong>空格</strong>。不要使用 Hard Tabs。</p>
+
+<pre><code class="``Ruby">  # 差 - 四个空格
+  def some_method
+      do_something
+  end
+
+  # 好
+  def some_method
+    do_something
+  end
+</code></pre></li>
+<li><p>使用 Unix 风格的行编码(BSD/Solaris/Linux/OSX 的用户不用担心，Windows 用户要格外小心。)</p>
+
+<ul>
+<li><p>如果你使用 Git ，你也许会想加入下面这个配置，来保护你的项目不被 Windows 的行编码侵入：</p>
+
+<pre><code class="bash">$ git config --global core.autocrlf true
+</code></pre></li>
+</ul>
+</li>
+<li><p>不要使用<code>;</code>来隔开语句和表达式。推论 - 每一行使用一条语句。</p>
+
+<pre><code class="``Ruby">  # 差
+  puts 'foobar'; # 不必要的分号
+
+  puts 'foo'; puts 'bar' # 同一行里有两个表达式
+
+  # 好
+  puts 'foobar'
+
+  puts 'foo'
+  puts 'bar'
+
+  puts 'foo', 'bar' # 特别的，这个适用于puts
+</code></pre></li>
+<li><p>对于没有成员的类，尽可能使用单行类定义。</p>
+
+<pre><code class="``Ruby">  # 差
+  class FooError &lt; StandardError
+  end
+
+  # 好
+  class FooError &lt; StandardError; end
+</code></pre></li>
+<li><p>避免使用单行方法。尽管它们在圈子里有那么一点点流行，但是它们的定义语法有一些诡异的特性导致使用它们时并不尽如人意。无论如何 - 一个单行方法里的表达式不应该多于 1 个。</p>
+
+<pre><code class="``Ruby">  # 差
+  def too_much; something; something_else; end
+
+  # 勉强可以 - 注意第一个 ; 是必需的
+  def no_braces_method; body end
+
+  # 勉强可以 - 注意第二个 ; 是可选的
+  def no_braces_method; body; end
+
+  # 勉强可以 - 语法上正确，但是没有 ; 让它有些难读
+  def some_method() body end
+
+  # 好
+  def some_method
+    body
+  end
+</code></pre>
+
+<p>  这个规则的一个例外是空方法。</p>
+
+<pre><code class="``Ruby">  # 好
+  def no_op; end
+</code></pre></li>
+<li><p>使用空格来围绕操作符，逗号 <code>,</code> 、冒号 <code>:</code> 及分号 <code>;</code> 之后，围绕在 <code>{</code> 和 <code>}</code> 之前。
+空格可能对（大部分）Ruby 直译器来说是无关紧要的，但正确的使用是写出可读性高的代码的关键。</p>
+
+<pre><code class="``Ruby">  sum = 1 + 2
+  a, b = 1, 2
+  1 &gt; 2 ? true : false; puts 'Hi'
+  [1, 2, 3].each { |e| puts e }
+</code></pre>
+
+<p>  （针对操作符）唯一的例外是当使用指数操作符时：</p>
+
+<pre><code class="``Ruby">  # 差
+  e = M * c ** 2
+
+  # 好
+  e = M * c**2
+</code></pre>
+
+<p>  <code>{</code> 和 <code>}</code> 需要额外说明，因为他们是用在块（block）、
+  哈希字面量（hash literals），以及嵌入字符串的表达式中。
+  对于哈希字面量来说，两种风格都是可接受的。</p>
+
+<pre><code class="``Ruby">  # 好 - { 之后和 }之前有空格
+  { one: 1, two: 2 }
+
+  # 好 - { 之后和 }之前没有空格
+  {one: 1, two: 2}
+</code></pre>
+
+<p>  第一个种风格稍微更具可读性（而且有争议的是，一般在Ruby社区里更受欢迎）。
+  第二种风格具有可为块和哈希字面量添加可视化的差别的优点。
+  无论你选哪一种都行 - 但是最好保持一致。</p>
+
+<p>  至于嵌入表达式（embedded expressions），这儿也有两个可接受的选择：</p>
+
+<pre><code class="``Ruby">  # 好 - 没有空格
+  "string#{expr}"
+
+  # 可以 - 更具可读性（有些争议）
+  "string#{ expr }"
+</code></pre>
+
+<p>  第一种风格极为流行，一般其他人都会建议你坚持这种风格。
+  另一方面来说，第二种风格有些更具可读性（虽然颇具争议）。
+  正如哈系那样 - 选一种风格并且保持一致。</p></li>
+<li><p>不要有空格在 <code>(</code> 、 <code>[</code> 之后，或 <code>]</code> 、 <code>)</code> 之前。</p>
+
+<pre><code class="``Ruby">  some(arg).other
+  [1, 2, 3].length
+</code></pre></li>
+<li><p>把 <code>when</code> 跟 <code>case</code> 缩排在同一层。我知道很多人不同意这一点，但这是 "The Ruby Programming Language" 及 "Programming Ruby" 所使用的风格。</p>
+
+<pre><code class="``Ruby">  case
+  when song.name == 'Misty'
+    puts 'Not again!'
+  when song.duration &gt; 120
+    puts 'Too long!'
+  when Time.now.hour &gt; 21
+    puts "It's too late"
+  else
+    song.play
+  end
+
+  kind = case year
+         when 1850..1889 then 'Blues'
+         when 1890..1909 then 'Ragtime'
+         when 1910..1929 then 'New Orleans Jazz'
+         when 1930..1939 then 'Swing'
+         when 1940..1950 then 'Bebop'
+         else 'Jazz'
+         end
+</code></pre></li>
+<li><p>在 <code>def</code> 之间使用空行，并且把方法分成合乎逻辑的段落。</p>
+
+<pre><code class="``Ruby">  def some_method
+    data = initialize(options)
+
+    data.manipulate!
+
+    data.result
+  end
+
+  def some_method
+    result
+  end
+</code></pre></li>
+<li><p>当给方法的参数赋默认值时，在 <code>=</code> 两边使用空格：</p>
+
+<pre><code class="``Ruby">  # 差
+  def some_method(arg1=:default, arg2=nil, arg3=[])
+    # 做一些任务...
+  end
+
+  # 好
+  def some_method(arg1 = :default, arg2 = nil, arg3 = [])
+    # 做一些任务...
+  end
+</code></pre>
+
+<p>  虽然几本 Ruby 书建议用第一个风格，不过第二个风格在实践中更为常见（并可争议地可读性更高一点）。</p></li>
+<li><p>避免在不需要的时候使用行继续符 (\) 。实际编码时，尽力避免使用行继续符。</p>
+
+<pre><code class="``Ruby">  # 差
+  result = 1 - \
+           2
+
+  # 好 (但是仍然丑到爆)
+  result = 1 \
+           - 2
+</code></pre></li>
+<li><p>当一个链式方法调用需要在另一行继续时，将 <code>.</code> 放在第二行</p>
+
+<pre><code class="``Ruby">  # 差 - 为了理解第二行需要去查阅第一行
+  one.two.three.
+    four
+
+  # 好 - 第二行在做什么立刻变得很清晰
+  one.two.three
+    .four
+</code></pre></li>
+<li><p>当一个方法呼叫的参数扩展超过一行时，排列它们。</p>
+
+<pre><code class="``Ruby">  # 一开始（一行太长）
+  def send_mail(source)
+    Mailer.deliver(to: 'bob@example.com', from: 'us@example.com', subject: 'Important message', body: source.text)
+  end
+
+  # 差（一般的缩排）
+  def send_mail(source)
+    Mailer.deliver(
+      to: 'bob@example.com',
+      from: 'us@example.com',
+      subject: 'Important message',
+      body: source.text)
+  end
+
+  # 差（两倍缩排）
+  def send_mail(source)
+    Mailer.deliver(
+        to: 'bob@example.com',
+        from: 'us@example.com',
+        subject: 'Important message',
+        body: source.text)
+  end
+
+  # 好
+  def send_mail(source)
+    Mailer.deliver(to: 'bob@example.com',
+                   from: 'us@example.com',
+                   subject: 'Important message',
+                   body: source.text)
+  end
+</code></pre></li>
+<li><p>长的常量数字添加下划线来改善可读性</p>
+
+<pre><code class="``Ruby">  # 差 - 有几个零？
+  num = 1000000
+
+  # 好 - 更容易被人脑解析。
+  num = 1_000_000
+</code></pre></li>
+<li><p>使用 RDoc 以及它的惯例来撰写 API 文档。不要在注解区块及 <code>def</code> 之前放一个空行。</p></li>
+<li>将每一行最多限制在 80 个字符。</li>
+<li>避免尾随的空白。</li>
+<li><p>不要使用区块注释。它们不能由空白引导，并且不如普通注释容易辨认。</p>
+
+<pre><code class="``Ruby">  # 差
+  == begin
+  一行注释
+  另一行注释
+  == end
+
+  # 好
+  # 一行注释
+  # 另一行注释
+</code></pre></li>
+</ul>
+
+
+<h2>语法</h2>
+
+<ul>
+<li><p>使用 <code>::</code> 只能引用常量（包括类和模块）。永远不要使用 <code>::</code> 来调用方法。</p>
+
+<pre><code class="``Ruby">  # 差
+  SomeClass::some_method
+  some_object::some_method
+
+  # 好
+  SomeClass.some_method
+  some_object.some_method
+  SomeModule::SomeClass::SOME_CONST
+</code></pre></li>
+<li><p>使用 <code>def</code> 时，当有参数时使用括号。当方法不接受任何参数时，省略括号。</p>
+
+<pre><code class="```Ruby">   def some_method
+     # 此处省略方法体
+   end
+
+   def some_method_with_arguments(arg1, arg2)
+     # 此处省略方法体
+   end
+</code></pre></li>
+<li><p>永远不要使用 <code>for</code> ，除非你很清楚为什么。大部分情况应该使用迭代器来取代。 <code>for</code> 是由 <code>each</code> 所实现的（所以你加入了一层的迂回），但出乎意料的是 — <code>for</code> 并没有包含一个新的作用域(不像是 <code>each</code> ）而在这个区块中定义的变量将会被外部所看到。</p>
+
+<pre><code class="``Ruby">  arr = [1, 2, 3]
+
+  # 差
+  for elem in arr do
+    puts elem
+  end
+
+  # 好
+  arr.each { |elem| puts elem }
+</code></pre></li>
+<li><p>永远不要在多行的 <code>if/unless</code> 使用 <code>then</code></p>
+
+<pre><code class="``Ruby">  # 差
+  if some_condition then
+    # 此处省略语句体
+  end
+
+  # 好
+  if some_condition
+    # 此处省略语句体
+  end
+</code></pre></li>
+<li><p>倾向使用三元操作符 <code>? :</code> 而不是 <code>if/then/else/end</code> 结构，它更为常见及更精准。</p>
+
+<pre><code class="``Ruby">  # 差
+  result = if some_condition then something else something_else end
+
+  # 好
+  result = some_condition ? something : something_else
+</code></pre></li>
+<li><p>使用一个表达式给一个三元操作符的分支。这也意味着三元操作符不要嵌套。嵌套情况使用 <code>if/else</code> 结构。</p>
+
+<pre><code class="``Ruby">  # 差
+  some_condition ? (nested_condition ? nested_something : nested_something_else) : something_else
+
+  # 好
+  if some_condition
+    nested_condition ? nested_something : nested_something_else
+  else
+    something_else
+  end
+</code></pre></li>
+<li><p>永远不要使用 <code>if x: ...</code> — 它已经在 Ruby 1.9 被移除了。使用三元操作符来取代。</p>
+
+<pre><code class="``Ruby">  # 差
+  result = if some_condition: something else something_else end
+
+  # 好
+  result = some_condition ? something : something_else
+</code></pre></li>
+<li><p>永远不要使用 <code>if x: ...</code> 使用三元操作符来取代。</p></li>
+<li><p>一行的情况使用 <code>when x then ...</code>。替代方案的语法 <code>when x: ...</code> 已经在 Ruby 1.9 被移除了。</p></li>
+<li><p>永远不要使用 <code>when x: ...</code>。参考前一个规则。</p></li>
+<li><p>使用 <code>!</code> 替代 <code>not</code>.</p>
+
+<pre><code class="``Ruby">  # 差 - 因为操作符有优先级，需要用括号。
+  x = (not something)
+
+  # 好
+  x = !something
+</code></pre></li>
+<li><p>布尔表达式使用 <code>&amp;&amp;/||</code>，控制流程使用 <code>and/or</code>。 （经验法则：如果你需要使用外部括号，你正在使用错误的操作符。）</p>
+
+<pre><code class="``Ruby">  # 布尔表达式
+  if some_condition &amp;&amp; some_other_condition
+    do_something
+  end
+
+  # 控制流程
+  document.saved? or document.save!
+</code></pre></li>
+<li><p>避免多行的 <code>? :</code>（三元操作符）；使用 <code>if/unless</code> 来取代。</p></li>
+<li><p>偏爱 <code>if/unless</code> 修饰符当你有单行的主体。另一个好的方法是使用控制流程的 <code>and/or</code>。</p>
+
+<pre><code class="``Ruby">  # 差
+  if some_condition
+    do_something
+  end
+
+  # 好
+  do_something if some_condition
+
+  # 另一个好方法
+  some_condition and do_something
+</code></pre></li>
+<li><p>否定条件偏爱 <code>unless</code> 优于 <code>if</code>（或是控制流程 <code>or</code>）。</p>
+
+<pre><code class="``Ruby">  # 差
+  do_something if !some_condition
+
+  # 好
+  do_something unless some_condition
+
+  # 另一个好方法
+  some_condition or do_something
+</code></pre></li>
+<li><p>永远不要使用 <code>unless</code> 搭配 <code>else</code> 。将它们改写成肯定条件。</p>
+
+<pre><code class="``Ruby">  # 差
+  unless success?
+    puts 'failure'
+  else
+    puts 'success'
+  end
+
+  # 好
+  if success?
+    puts 'success'
+  else
+    puts 'failure'
+  end
+</code></pre></li>
+<li><p>不要使用括号围绕 <code>if/unless/while</code> 的条件式，除非这条件包含了一个赋值（见下面使用 <code>=</code> （一个赋值）的返回值）。</p>
+
+<pre><code class="``Ruby">  # 差
+  if (x &gt; 10)
+    # 此处省略语句体
+  end
+
+  # 好
+  if x &gt; 10
+    # 此处省略语句体
+  end
+
+  # 好
+  if (x = self.next_value)
+    # 此处省略语句体
+  end
+</code></pre></li>
+<li><p>当你有单行主体时，偏爱使用 <code>while/until</code> 修饰符。</p>
+
+<pre><code class="``Ruby">  # 差
+  while some_condition
+    do_something
+  end
+
+  # 好
+  do_something while some_condition
+</code></pre></li>
+<li><p>负面条件倾向使用 <code>until</code> 而不是 <code>while</code> 。</p>
+
+<pre><code class="``Ruby">  # 差
+  do_something while !some_condition
+
+  # 好
+  do_something until some_condition
+</code></pre></li>
+<li><p>为循环后测试使用 Kernel#loop 搭配 break 而不是 <code>begin/end/until</code> 或者 <code>begin/end/while</code>。</p>
+
+<pre><code class="`Ruby"> # 差
+ begin
+   puts val
+   val += 1
+ end while val &lt; 0
+
+ # 好
+ loop do
+   puts val
+   val += 1
+   break unless val &lt; 0
+ end
+</code></pre></li>
+<li><p>忽略围绕方法参数的括号，如内部 DSL (如：Rake, Rails, RSpec)，Ruby 中带有 "关键字" 状态的方法（如：<code>attr_reader</code>, <code>puts</code>）以及属性存取方法。所有其他的方法呼叫使用括号围绕参数。</p>
+
+<pre><code class="``Ruby">  class Person
+    attr_reader :name, :age
+
+    # 忽略
+  end
+
+  temperance = Person.new('Temperance', 30)
+  temperance.name
+
+  puts temperance.age
+
+  x = Math.sin(y)
+  array.delete(e)
+</code></pre></li>
+<li><p>单行区块倾向使用 <code>{...}</code> 而不是 <code>do..end</code>。多行区块避免使用 <code>{...}</code>（多行串连总是​​丑陋）。在 <code>do...end</code> 、 "控制流程" 及 "方法定义" ，永远使用 <code>do...end</code> （如 Rakefile 及某些 DSL）。串连时避免使用 <code>do...end</code>。</p>
+
+<pre><code class="``Ruby">  names = ['Bozhidar', 'Steve', 'Sarah']
+
+  # 差
+  names.each do |name|
+    puts name
+  end
+
+  # 好
+  names.each { |name| puts name }
+
+  # 差
+  names.select do |name|
+    name.start_with?('S')
+  end.map { |name| name.upcase }
+
+  # 好
+  names.select { |name| name.start_with?('S') }.map { |name| name.upcase }
+</code></pre>
+
+<p>  某些人会争论多行串连时，使用 <code>{...}</code> 看起来还可以，但他们应该扪心自问— 这样代码真的可读吗？难道不能把区块内容取出来放到小巧的方法里吗？</p></li>
+<li><p>避免在不需要控制流程的场合时使用 <code>return</code> 。</p>
+
+<pre><code class="``Ruby">  # 差
+  def some_method(some_arr)
+    return some_arr.size
+  end
+
+  # 好
+  def some_method(some_arr)
+    some_arr.size
+  end
+</code></pre></li>
+<li><p>避免在不需要的情况使用 <code>self</code> 。（只有在调用一个 self write 访问器时会需要用到。）</p>
+
+<pre><code class="``Ruby">  # 差
+  def ready?
+    if self.last_reviewed_at &gt; self.last_updated_at
+      self.worker.update(self.content, self.options)
+      self.status = :in_progress
+    end
+    self.status == :verified
+  end
+
+  # 好
+  def ready?
+    if last_reviewed_at &gt; last_updated_at
+      worker.update(content, options)
+      status = :in_progress
+    end
+    status == :verified
+  end
+</code></pre></li>
+<li><p>避免使用带有局部变量的 shadowing 方法，除非它们彼此相等。</p>
+
+<pre><code class="``Ruby">  class Foo
+    attr_accessor :options
+
+    # ok
+    def initialize(options)
+      self.options = options
+      # 此处 options 和 self.options 都是等价的
+    end
+
+    # 差
+    def do_something(options = {})
+      unless options[:when] == :later
+        output(self.options[:message])
+      end
+    end
+
+    # 好
+    def do_something(params = {})
+      unless params[:when] == :later
+        output(options[:message])
+      end
+    end
+  end
+</code></pre></li>
+<li><p>不要在条件表达式里使用 <code>=</code> （赋值）的返回值。</p>
+
+<pre><code class="``Ruby">  # 差 (还会有个警告)
+  if (v = array.grep(/foo/))
+    do_something(v)
+    ...
+  end
+
+  # 差 (还会有个警告)
+  if v = array.grep(/foo/)
+    do_something(v)
+    ...
+  end
+
+  # 好
+  v = array.grep(/foo/)
+  if v
+    do_something(v)
+    ...
+  end
+</code></pre></li>
+<li><p>放心地使用 <code>||=</code> 来初始化变量</p>
+
+<pre><code class="``Ruby">  # 仅在 name 为 nil 或 false 时，把名字设为 Bozhidar。
+  name ||= 'Bozhidar'
+</code></pre></li>
+<li><p>不要使用 <code>||=</code> 来初始化布尔变量。 （想看看如果现在的值刚好是 <code>false</code> 时会发生什么。）</p>
+
+<pre><code class="``Ruby">  # 差 — 会把 enabled 设成真，即便它本来是假。
+  enabled ||= true
+
+  # 好
+  enabled = true if enabled.nil?
+</code></pre></li>
+<li><p>避免使用 Perl 风格的特殊变量（像是 <code>$0-9</code>, <code>$</code>, 等等）。它们看起来非常神秘而不鼓励使用，除非用于单行脚本。</p></li>
+<li><p>永远不要在方法名与左括号之间放一个空格。</p>
+
+<pre><code class="``Ruby">  # 差
+  f (3 + 2) + 1
+
+  # 好
+  f(3 + 2) + 1
+</code></pre></li>
+<li><p>如果方法的第一个参数由左括号开始的，则此方法调用应该使用括号。举个例子，如 <code>f((3+2) + 1)</code>。</p></li>
+<li><p>总是使用 <code>-w</code> 来执行 Ruby 解释器，如果你忘了某个上述的规则，它就会警告你！</p></li>
+<li><p>使用新的 lambda 字面语法。</p>
+
+<pre><code class="``Ruby">  # 差
+  lambda = lambda { |a, b| a + b }
+  lambda.call(1, 2)
+
+  # 好
+  lambda = -&gt;(a, b) { a + b }
+  lambda.(1, 2)
+</code></pre></li>
+<li><p>未使用的区块参数使用 <code>_</code> 。</p>
+
+<pre><code class="``Ruby">  # 差
+  result = hash.map { |k, v| v + 1 }
+
+  # 好
+  result = hash.map { |_, v| v + 1 }
+</code></pre></li>
+<li><p>使用 <code>$stdout/$stderr/$stdin</code> 而不是
+<code>STDOUT/STDERR/STDIN</code>。<code>STDOUT/STDERR/STDIN</code> 是常量，而在 Ruby 中，
+当你实际需要给常量重新复制（可能是重定向到某个流），只要你这样做你就
+会从解释器得到一个警告。</p></li>
+<li><p>使用 <code>warn</code> 而不是 <code>$stderr.puts</code>。除了更加清晰简洁，如果你需要的话，
+<code>warn</code> 还允许你压制（suppress）警告（通过<code>-W0</code>将警告级别设为0）。</p></li>
+<li><p>倾向使用 <code>sprintf</code> 而不是相当隐晦的 <code>String#%</code> 方法.</p>
+
+<pre><code class="``Ruby">  # 差
+  '%d %d' % [20, 10]
+  # =&gt; '20 10'
+
+  # 好
+  sprintf('%d %d', 20, 10)
+  # =&gt; '20 10'
+</code></pre></li>
+<li><p>倾向使用 <code>Array#join</code> 而不是相当隐晦的使用字符串作参数的 <code>Array#*</code>。</p>
+
+<pre><code class="``Ruby">  # 差
+  %w(one two three) * ', '
+  # =&gt; 'one, two, three'
+
+  # 好
+  %w(one two three).join(', ')
+  # =&gt; 'one, two, three'
+</code></pre></li>
+<li><p>当处理你希望像 Array 那样对待的变量，但是你不确定它是一个数组时，
+使用 <code>[*var]</code> or <code>Array()</code> 而不是显式的 <code>Array</code> 检查。</p>
+
+<pre><code class="``Ruby">  # 差
+  paths = [paths] unless paths.is_a? Array
+  paths.each { |path| do_something(path) }
+
+  # 好
+  [*paths].each { |path| do_something(path) }
+
+  # 好（而且更具易读性一点）
+  Array(paths).each { |path| do_something(path) }
+</code></pre></li>
+<li><p>如果可能，使用范围来替换复杂的逻辑比较。</p>
+
+<pre><code class="``Ruby">  # 差
+  do_something if x &gt;= 1000 &amp;&amp; x &lt; 2000
+
+  # 好
+  do_something if (1000...2000).include?(x)
+</code></pre></li>
+</ul>
+
+
+<h2>命名</h2>
+
+<blockquote><p>程式设计的真正难题是替事物命名及使缓存失效。 <br/>
+-- Phil Karlton</p></blockquote>
+
+<ul>
+<li><p>标识符用英语命名。</p>
+
+<pre><code class="``Ruby">  # 差 - 变量名用带有拉丁文的保加利亚语写成。
+  zaplata = 1_000
+
+  # 好
+  salary = 1_000
+</code></pre></li>
+<li><p>符号、方法与变量使用蛇底式小写（snake_case）。</p>
+
+<pre><code class="``Ruby">  # 差
+  :'some symbol'
+  :SomeSymbol
+  :someSymbol
+
+  someVar = 5
+
+  def someMethod
+    ...
+  end
+
+  def SomeMethod
+   ...
+  end
+
+  # 好
+  :some_symbol
+
+  def some_method
+    ...
+  end
+</code></pre></li>
+<li><p>类别与模组使用驼峰式大小写（CamelCase）。（保留类似 HTTP、RFC、XML 这种缩写为大写）</p>
+
+<pre><code class="``Ruby">  # 差
+  class Someclass
+    ...
+  end
+
+  class Some_Class
+    ...
+  end
+
+  class SomeXml
+    ...
+  end
+
+  # 好
+  class SomeClass
+    ...
+  end
+
+  class SomeXML
+    ...
+  end
+</code></pre></li>
+<li><p>其他常数使用尖叫蛇底式大写（SCREAMING_SNAKE_CASE）。</p>
+
+<pre><code class="``Ruby">  # 差
+  SomeConst = 5
+
+  # 好
+  SOME_CONST = 5
+</code></pre></li>
+<li><p>判断式方法的名字（返回布尔值的方法）应以问号结尾。 (例如： <code>Array#empty?</code> )</p></li>
+<li><p>有潜在 <em>危险性</em> 的方法，若此 <em>危险</em> 方法有安全版本存在时，应以安全版本名加上惊叹号结尾（例如：改动 <code>self</code> 或参数、 <code>exit!</code> 等等方法）。</p></li>
+<li><p>如果存在潜在的<em>危险</em>方法（即修改 <code>self</code> 或者参数的方法，不像 <code>exit</code> 那样运行
+finalizers的 <code>exit!</code>，等等）的安全版本，那么<em>危险</em>方法的名字应该以惊叹号结尾。</p>
+
+<pre><code class="``Ruby">  # 不好 - 没有对应的安全方法
+  class Person
+    def update!
+    end
+  end
+
+  # 好
+  class Person
+    def update
+    end
+  end
+
+  # 好
+  class Person
+    def update!
+    end
+
+    def update
+    end
+  end
+</code></pre></li>
+<li><p>如果可能的话，根据危险方法（bang）来定义对应的安全方法（non-bang）。</p>
+
+<pre><code class="``Ruby">  class Array
+    def flatten_once!
+      res = []
+
+      each do |e|
+        [*e].each { |f| res &lt;&lt; f }
+      end
+
+      replace(res)
+    end
+
+    def flatten_once
+      dup.flatten_once!
+    end
+  end
+</code></pre></li>
+<li><p>在短的区块使用 <code>reduce</code> 时，把参数命名为 <code>|a, e|</code> (累加器，元素)</p></li>
+<li><p>在定义二元操作符时，把参数命名为 <code>other</code> （<code>&lt;&lt;</code> 与 <code>[]</code> 是这条规则的例外，因为它们的语义不同）。</p>
+
+<pre><code class="``Ruby">  def +(other)
+    # body omitted
+  end
+</code></pre></li>
+<li><p>倾向使用 <code>map</code> 而不是 <code>collect</code> ， <code>find</code> 而不是 <code>detect</code> ， <code>select</code> 而不是 <code>find_all</code> ， <code>reduce</code> 而不是 <code>inject</code> 以及 <code>size</code> 而不是 <code>length</code> 。这不是一个硬性要求；如果使用别名增加了可读性，使用它没关系。这些有押韵的方法名是从 Smalltalk 继承而来，在别的语言不通用。鼓励使用 <code>select</code> 而不是 <code>find_all</code> 的理由是它跟 <code>reject</code> 搭配起来是一目了然的。</p></li>
+<li><p>倾向使用 <code>flat_map</code> 而不是 <code>map</code> + <code>flatten</code> 的组合。
+这并不适用于深度大于 2 的数组，举个例子，如果 <code>users.first.songs == ['a', ['b', 'c']]</code> ，则使用 <code>map + flatten</code> 的组合，而不是使用 <code>flat_map</code> 。
+<code>flat_map</code> 将数组变平坦一个层级，而 <code>flatten</code> 会将整个数组变平坦。</p>
+
+<pre><code class="``Ruby">  # 差
+  all_songs = users.map(&amp;:songs).flatten.uniq
+
+  # 好
+  all_songs = users.flat_map(&amp;:songs).uniq
+</code></pre></li>
+</ul>
+
+
+<h2>注释</h2>
+
+<blockquote><p>良好的代码是最佳的文档。当你要加一个注释时，扪心自问，<br/>
+"如何改善代码让它不需要注释？" 改善代码然后文档化它们以使之更清楚。<br/>
+-- Steve McConnell</p></blockquote>
+
+<ul>
+<li>编写自我解释含义的代码然后忽略这一节的其它部分。我是认真的！</li>
+<li>用英语写注释。</li>
+<li>在注释的 <code>#</code> 与注释文字之间使用一个空格。</li>
+<li>比一个单词长的注释要大写开头并使用标点符号。句号后使用<a href="http://en.wikipedia.org/wiki/Sentence_spacing">一个空格</a>。</li>
+<li><p>避免冗赘的注释</p>
+
+<pre><code class="``Ruby">  # 差
+  counter += 1 # 计数器加一
+</code></pre></li>
+<li>保持现有的注释是最新的。过时的注解比没有注解还差。
+
+<blockquote><p>好代码就像是好的笑话 - 它不需要解释 <br/>
+-- Russ Olsen</p></blockquote></li>
+<li>避免替烂代码写注释。重构代码让它们看起来一目了然。 （要嘛就做，要嘛不做― 不要只是试试看。-- Yoda）</li>
+</ul>
+
+
+<h3>注解</h3>
+
+<ul>
+<li>注解应该直接写在相关代码那行之前。</li>
+<li>注解关键字后面，跟着一个冒号及空格，接着是一个描述问题的说明。</li>
+<li><p>如果需要用多行来描述问题，之后的行要放在 <code>#</code> 号后面并缩排两个空格。</p>
+
+<pre><code class="``Ruby">  def bar
+    # FIXME: 这在v3.2.1 版本之后会异常崩溃，或许与
+    #   BarBazUtil 的版本更新有关
+    baz(:quux)
+  end
+</code></pre></li>
+<li><p>在问题是显而易见的情况下，任何的文档会是多余的，注解应放在有问题的那行的最后，并且不需更多说明。这个用法应该是例外而不是规则。</p>
+
+<pre><code class="``Ruby">  def bar
+    sleep 100 # OPTIMIZE
+  end
+</code></pre></li>
+<li>使用 <code>TODO</code> 来标记以后应被加入的未实现特征与功能。</li>
+<li>使用 <code>FIXME</code> 来标记一个需要修复的会引起错误的代码。</li>
+<li>使用 <code>OPTIMIZE</code> 来标记可能影响性能的缓慢或效率低下的代码。</li>
+<li>使用 <code>HACK</code> 来标记代码异味，其中包含了可疑的编码实践以及应该需要重构。</li>
+<li>使用 <code>REVIEW</code> 来标记任何需要审查及确认正常动作的地方。举例来说： <code>REVIEW: 我们确定用户现在是这么做的吗？</code></li>
+<li>如果你觉得恰当的话，可以使用其他定制的注解关键字，但记得把它们文档化在项目的 <code>README</code> 或类似的地方。</li>
+</ul>
+
+
+<h2>类与模块</h2>
+
+<ul>
+<li><p>在类别定义里使用一致的结构。</p>
+
+<pre><code class="``Ruby">  class Person
+    # 首先是 extend 与 include
+    extend SomeModule
+    include AnotherModule
+
+    # 接着是常量
+    SOME_CONSTANT = 20
+
+    # 接下来是属性宏
+    attr_reader :name
+
+    # 跟着是其它的宏（如果有的话）
+    validates :name
+
+    # 公开的类别方法接在下一行
+    def self.some_method
+    end
+
+    # 跟着是公开的实例方法
+    def some_method
+    end
+
+    # 受保护及私有的方法，一起放在接近结尾的地方
+    protected
+
+    def some_protected_method
+    end
+
+    private
+
+    def some_private_method
+    end
+  end
+</code></pre></li>
+<li><p>倾向使用模块，而不是只有类别方法的类。类别应该只在产生实例是合理的时候使用。</p>
+
+<pre><code class="``Ruby">  # 差
+  class SomeClass
+    def self.some_method
+      # 省略函数体
+    end
+
+    def self.some_other_method
+    end
+  end
+
+  # 好
+  module SomeClass
+    module_function
+
+    def some_method
+      # 省略函数体
+    end
+
+    def some_other_method
+    end
+  end
+</code></pre></li>
+<li><p>当你想将模块的实例方法变成类别方法时，偏爱使用 <code>module_function</code> 胜过 <code>extend self</code> 。</p>
+
+<pre><code class="``Ruby">  # 差
+  module Utilities
+    extend self
+
+    def parse_something(string)
+      # 做一些事
+    end
+
+    def other_utility_method(number, string)
+      # 做另一些事
+    end
+  end
+
+  # 好
+  module Utilities
+    module_function
+
+    def parse_something(string)
+      # 做一些事
+    end
+
+    def other_utility_method(number, string)
+      # 做另一些事
+    end
+  end
+</code></pre></li>
+<li><p>当设计类型层级时，确认它们符合<a href="http://en.wikipedia.org/wiki/Liskov_substitution_principle">Liskov 替换原则</a>。</p></li>
+<li>尽可能让你的类型越<a href="http://en.wikipedia.org/wiki/SOLID_(object-oriented_design)">SOLID</a>越好。</li>
+<li><p>永远替类型提供一个适当的 <code>to_s</code> 方法给来表示领域模型。</p>
+
+<pre><code class="``Ruby">  class Person
+    attr_reader :first_name, :last_name
+
+    def initialize(first_name, last_name)
+      @first_name = first_name
+      @last_name = last_name
+    end
+
+    def to_s
+      "#{@first_name #@last_name"}
+    end
+  end
+</code></pre></li>
+<li><p>使用 <code>attr</code> 系列函数来定义琐碎的 accessor 或 mutators。</p>
+
+<pre><code class="``Ruby">  # 差
+  class Person
+    def initialize(first_name, last_name)
+      @first_name = first_name
+      @last_name = last_name
+    end
+
+    def first_name
+      @first_name
+    end
+
+    def last_name
+      @last_name
+    end
+  end
+
+  # 好
+  class Person
+    attr_reader :first_name, :last_name
+
+    def initialize(first_name, last_name)
+      @first_name = first_name
+      @last_name = last_name
+    end
+  end
+</code></pre></li>
+<li><p>考虑使用 <code>Struct.new</code>，它替你定义了那些琐碎的存取器（accessors），构造器（constructor）以及比较操作符（comparison operators）。</p>
+
+<pre><code class="``Ruby">  # 好
+  class Person
+    attr_reader :first_name, :last_name
+
+    def initialize(first_name, last_name)
+      @first_name = first_name
+      @last_name = last_name
+    end
+  end
+
+  # 更好
+  Person = Struct.new(:first_name, :last_name) do
+  end
+</code></pre></li>
+<li><p>考虑加入工厂方法以提供附加的有意义的方式来生成一个特定的类实例。</p>
+
+<pre><code class="``Ruby">  class Person
+    def self.create(options_hash)
+      # body omitted
+    end
+  end
+</code></pre></li>
+<li><p>倾向使用<a href="http://en.wikipedia.org/wiki/Duck_typing">Duck Typing</a>而不是继承。</p>
+
+<pre><code class="``Ruby">  ## 差
+  class Animal
+    # 抽象方法
+    def speak
+    end
+  end
+
+  # 继承超类
+  class Duck &lt; Animal
+    def speak
+      puts 'Quack! Quack'
+    end
+  end
+
+  # 继承超类
+  class Dog &lt; Animal
+    def speak
+      puts 'Bau! Bau!'
+    end
+  end
+
+  ## 好
+  class Duck
+    def speak
+      puts 'Quack! Quack'
+    end
+  end
+
+  class Dog
+    def speak
+      puts 'Bau! Bau!'
+    end
+  end
+</code></pre></li>
+<li><p>由于类变量在继承中产生的 "讨厌的" 行为，避免使用类变量( <code>@@</code> )。</p>
+
+<pre><code class="``Ruby">  class Parent
+    @@class_var = 'parent'
+
+    def self.print_class_var
+      puts @@class_var
+    end
+  end
+
+  class Child &lt; Parent
+    @@class_var = 'child'
+  end
+
+  Parent.print_class_var # =&gt; will print "child"
+</code></pre>
+
+<p>  如同你所看到的，在类型层级中的所有类其实都共享单独一个类变量。通常情况下应该倾向使用实例变量而不是类变量。</p></li>
+<li><p>依据方法的目的用途指定适当的可见层级(<code>private</code> ,<code>protected</code> )。别把所有方法都设为 <code>public</code> （方法的缺省值）。我们现在是在写 <em>Ruby</em> ，不是 <em>Python</em> 。</p></li>
+<li><p>将 <code>public</code>，<code>protected</code>，<code>private</code> 和被应用的方法定义保持一致的缩排。在上下各留一行来强调这个可见性应用于之后的所有方法。）</p>
+
+<pre><code class="``Ruby">  class SomeClass
+    def public_method
+      # ...
+    end
+
+    private
+
+    def private_method
+      # ...
+    end
+
+    def another_private_method
+      # ...
+    end
+  end
+</code></pre></li>
+<li><p>使用<code>def self.method</code> 来定义 singleton 方法。由于类的名称不会重复的关系，这使得代码更容易重构。</p>
+
+<pre><code class="``Ruby">  class TestClass
+    # 差
+    def TestClass.some_method
+      # 省略方法体
+    end
+
+    # 好
+    def self.some_other_method
+      # 省略方法体
+    end
+
+    # 也有可能及当你要定义多个
+    # singleton时的便利方法
+    class &lt;&lt; self
+      def first_method
+        # 省略方法体
+      end
+
+      def second_method_etc
+        # 省略方法体
+      end
+    end
+  end
+</code></pre></li>
+</ul>
+
+
+<h2>异常</h2>
+
+<ul>
+<li><p>使用 <code>fail</code> 方法来抛出异常。仅在捕捉到异常时使用 <code>raise</code> 来重新抛出异常（因为没有失败，所以只是显式地有目的性地抛出一个异常）</p>
+
+<pre><code class="``Ruby">  begin
+   fail 'Oops';
+  rescue =&gt; error
+    raise if error.message != 'Oops'
+  end
+</code></pre></li>
+<li><p>永远不要从 <code>ensure</code> 区块返回。如果你显式地从 <code>ensure</code> 区块中的一个方法返回，那么这方法会如同没有异常般的返回。实际上，异常会被默默丢掉。</p>
+
+<pre><code class="``Ruby">  def foo
+    begin
+      fail
+    ensure
+      return 'very bad idea'
+    end
+  end
+</code></pre></li>
+<li><p>尽可能使用隐式的 <code>begin</code> 区块。</p>
+
+<pre><code class="``Ruby">  # 差
+  def foo
+    begin
+      # 此处放主要逻辑
+    rescue
+      # 错误处理放在此处
+    end
+  end
+
+  # 好
+  def foo
+    # 此处放主要逻辑
+  rescue
+    # 错误处理放在此处
+  end
+</code></pre></li>
+<li><p>通过 <em>contingency</em> 方法 (一个由 Avdi Grimm 创造的词)来减少 <code>begin</code> 区块的使用。</p>
+
+<pre><code class="``Ruby">  # 差
+  begin
+    something_that_might_fail
+  rescue IOError
+    # 处理 IOError
+  end
+
+  begin
+    something_else_that_might_fail
+  rescue IOError
+    # 处理 IOError
+  end
+
+  # 好
+  def with_io_error_handling
+     yield
+  rescue IOError
+    # 处理 IOError
+  end
+
+  with_io_error_handling { something_that_might_fail }
+
+  with_io_error_handling { something_else_that_might_fail }
+</code></pre></li>
+<li><p>不要封锁异常。</p>
+
+<pre><code class="``Ruby">  begin
+    # 这里发生了一个异常
+  rescue SomeError
+    # 拯救子句完全没有做事
+  end
+
+  # 差
+  do_something rescue nil
+</code></pre></li>
+<li><p>避免使用 <code>rescue</code> 的修饰符形式。</p>
+
+<pre><code class="``Ruby">  # 差 - 这捕捉了所有的 StandardError 异常。
+  do_something rescue nil
+</code></pre></li>
+<li><p>不要为了控制流程而使用异常。</p>
+
+<pre><code class="``Ruby">  # 差
+  begin
+    n / d
+  rescue ZeroDivisionError
+    puts 'Cannot divide by 0!'
+  end
+
+  # 好
+  if d.zero?
+    puts 'Cannot divide by 0!'
+  else
+    n / d
+  end
+</code></pre></li>
+<li><p>避免救援 <code>Exception</code> 类别。这会把信号困住，并呼叫 <code>exit</code>，导致你需要 <code>kill -9</code> 进程。</p>
+
+<pre><code class="``Ruby">  # 差
+  begin
+    # 呼叫 exit 及杀掉信号会被捕捉（除了 kill -9）
+    exit
+  rescue Exception
+    puts "you didn't really want to exit, right?"
+    # 异常处理
+  end
+
+  # 好
+  begin
+    # 一个不明确的rescue子句捕捉的是StandardError，
+    #   而不是许多编程者所设想的Exception。
+  rescue =&gt; e
+    # 异常处理
+  end
+
+  # 也好
+  begin
+    # 这里发生一个异常
+
+  rescue StandardError =&gt; e
+    # 异常处理
+  end
+</code></pre></li>
+<li><p>把较具体的异常放在救援串连的较上层，不然它们永远不会被拯救。</p>
+
+<pre><code class="``Ruby">  # 差
+  begin
+    # 一些代码
+  rescue Exception =&gt; e
+    # 一些处理
+  rescue StandardError =&gt; e
+    # 一些处理
+  end
+
+  # 好
+  begin
+    # 一些代码
+  rescue StandardError =&gt; e
+    # 一些处理
+  rescue Exception =&gt; e
+    # 一些处理
+  end
+</code></pre></li>
+<li><p>在 ensure 区块中释放你的程式的外部资源。</p>
+
+<pre><code class="``Ruby">  f = File.open('testfile')
+  begin
+    # .. 处理
+  rescue
+    # .. 错误处理
+  ensure
+    f.close unless f.nil?
+  end
+</code></pre></li>
+<li>倾向使用标准库的异常类而不是导入新的异常类。</li>
+</ul>
+
+
+<h2>集合</h2>
+
+<ul>
+<li><p>倾向数组及哈希的字面表示法（除非你需要给构造器传入参数）。</p>
+
+<pre><code class="``Ruby">  # 差
+  arr = Array.new
+  hash = Hash.new
+
+  # 好
+  arr = []
+  hash = {}
+</code></pre></li>
+<li><p>对字面数组语法，当你需要一个单词（没有空格和特殊字符的非空字符串）的数组时，
+倾向使用 <code>%w</code>。仅当数组只有两个及以上元素时才应用这个规则。</p>
+
+<pre><code class="``Ruby">  # 差
+  STATES = ['draft', 'open', 'closed']
+
+  # 好
+  STATES = %w(draft open closed)
+</code></pre></li>
+<li><p>对字面数组语法，当你需要一个符号（并且不需要保持 Ruby 1.9 兼容性）的数组时，
+倾向使用 <code>%i</code>。仅当数组只有两个及以上元素时才应用这个规则。</p>
+
+<pre><code class="``Ruby">  # 差
+  STATES = [:draft, :open, :closed]
+
+  # 好
+  STATES = %i(draft open closed)
+</code></pre></li>
+<li><p>避免在数组中创造巨大的间隔。</p>
+
+<pre><code class="``Ruby">  arr = []
+  arr[100] = 1 # 现在你有一个很多 nil 的数组
+</code></pre></li>
+<li>当处理独一无二的元素时，使用 <code>Set</code> 来替代 <code>Array</code> 。 <code>Set</code> 实现了不重复的无序数值集合。 <code>Set</code>是数组直观的内部操作功能与哈希的快速存取的混合体。</li>
+<li><p>倾向用符号来取代字符串作为哈希的键。</p>
+
+<pre><code class="``Ruby">  # 差
+  hash = { 'one' =&gt; 1, 'two' =&gt; 2, 'three' =&gt; 3 }
+
+  # 好
+  hash = { one: 1, two: 2, three: 3 }
+</code></pre></li>
+<li><p>避免使用可变的对象作为键值。</p></li>
+<li><p>当哈希的键为符号时，使用哈希的字面语法。</p>
+
+<pre><code class="``Ruby">  # 差
+  hash = { :one =&gt; 1, :two =&gt; 2, :three =&gt; 3 }
+
+  # 好
+  hash = { one: 1, two: 2, three: 3 }
+</code></pre></li>
+<li><p>在处理应该存在的哈希键时，使用<code>fetch</code> 。</p>
+
+<pre><code class="``Ruby">  heroes = { batman: 'Bruce Wayne', superman: 'Clark Kent' }
+  # 差 - 如果我们打错字的话，我们就无法找到对的英雄了
+  heroes[:batman] # =&gt; "Bruce Wayne"
+  heroes[:supermen] # =&gt; nil
+
+  # 好 - fetch 会抛出一个 KeyError 来使这个问题明显
+  heroes.fetch(:supermen)
+</code></pre></li>
+<li><p>在使用 <code>fetch</code> 时，使用第二个参数设置默认值</p>
+
+<pre><code class="`Ruby"> batman = { name: 'Bruce Wayne', is_evil: false }
+
+ # 差 - 如果我们仅仅使用 || 操作符，那么当值为假时，我们不会得到预期的结果
+ batman[:is_evil] || true # =&gt; true
+
+ # 好 - fetch 在遇到假值时依然正确
+ batman.fetch(:is_evil, true) # =&gt; false
+</code></pre></li>
+<li><p>依赖这个事实， Ruby 1.9 的哈希是有序的。</p></li>
+<li>在遍历一个集合时，不要改动它。</li>
+</ul>
+
+
+<h2>字符串</h2>
+
+<ul>
+<li><p>倾向使用字符串插值（interpolation），而不是字符串连接（concatenation）。</p>
+
+<pre><code class="``Ruby">  # 差
+  email_with_name = user.name + ' &lt;' + user.email + '&gt;'
+
+  # 好
+  email_with_name = "#{user.name} &lt;#{user.email}&gt;"
+</code></pre></li>
+<li><p>考虑替字符串插值留白。這使插值在字符串里看起來更清楚。</p>
+
+<pre><code class="``Ruby">  "#{ user.last_name }, #{ user.first_name }"
+</code></pre></li>
+<li><p>当你不需要插入特殊符号如 <code>\t</code>, <code>\n</code>, <code>'</code>, 等等时，倾向使用单引号的字符串。</p>
+
+<pre><code class="``Ruby">  # 差
+  name = "Bozhidar"
+
+  # 好
+  name = 'Bozhidar'
+</code></pre></li>
+<li><p>别忘了使用 <code>{}</code> 来围绕被插入字符串的实例与全局变量。</p>
+
+<pre><code class="``Ruby">  class Person
+    attr_reader :first_name, :last_name
+
+    def initialize(first_name, last_name)
+      @first_name = first_name
+      @last_name = last_name
+    end
+
+    # 差 - 有效，但难看
+    def to_s
+      "#@first_name #@last_name"
+    end
+
+    # 好
+    def to_s
+      "#{@first_name} #{@last_name}"
+    end
+  end
+
+  $global = 0
+  # 差
+  puts "$global = #$global"
+
+  # 好
+  puts "$global = #{$global}"
+</code></pre></li>
+<li><p>当你需要建构庞大的数据块（chunk）时，避免使用 <code>String#+</code> 。
+使用 <code>String#&lt;&lt;</code> 来替代。字符串用<code>&lt;&lt;</code>连接能就地改变字符串实例，并且永远比 <code>String#+</code> 来得快，<code>String#+</code> 创造了一堆新的字符串对象。</p>
+
+<pre><code class="``Ruby">  # 好也比较快
+  html = ''
+  html &lt;&lt; '&lt;h1&gt;Page title&lt;/h1&gt;'
+
+  paragraphs.each do |paragraph|
+    html &lt;&lt; "&lt;p&gt;#{paragraph}&lt;/p&gt;"
+  end
+</code></pre></li>
+</ul>
+
+
+<h2>正则表达式</h2>
+
+<blockquote><p>有些人在面对问题时，不经大脑便认为，「我知道，这里该用正则表达式」。现在问题反倒变成两个了。<br/>
+-- Jamie Zawinski</p></blockquote>
+
+<ul>
+<li>如果你只需要在字符串中简单的搜索文字，不要使用正则表达式：<code>string['text']</code></li>
+<li><p>针对简单的字符串查询，你可以直接在字符串索引中直接使用正则表达式。</p>
+
+<pre><code class="``Ruby">  match = string[/regexp/] # 获得匹配正则表达式的内容
+  first_group = string[/text(grp)/, 1] # 或得分组的内容
+  string[/text (grp)/, 1] = 'replace' # string =&gt; 'text replace'
+</code></pre></li>
+<li><p>当你不需要替结果分组时，使用非分组的群组。</p>
+
+<pre><code class="``Ruby">  /(first|second)/ # 差
+  /(?:first|second)/ # 好
+</code></pre></li>
+<li><p>避免使用 <code>$1-9</code>，因为它们很难追踪它们包含什么。可以使用命名群组来替代。</p>
+
+<pre><code class="``Ruby">  # 差
+  /(regexp)/ =~ string
+  ...
+  process $1
+
+  # 好
+  /(?&lt;meaningful_var&gt;regexp)/ =~ string
+  ...
+  process meaningful_var
+</code></pre></li>
+<li>字符类别只有几个你需要关心的特殊字符：<code>^</code>, <code>-</code>, <code>\</code>, <code>]</code>，所以你不用转义字<code>.</code> 或 <code>[]</code> 的中括号。</li>
+<li><p>小心使用 <code>^</code> 与 <code>$</code> ，它们匹配的是一行的开始与结束，不是字符串的开始与结束。如果你想要匹配整个字符串，使用 <code>\A</code> 与 <code>\z</code>。(译注：<code>\Z</code> 实为 <code>/\n?\z/</code>，使用 <code>\z</code> 才能匹配到有含新行的字符串的结束)</p>
+
+<pre><code class="``Ruby">  string = "some injection\nusername"
+  string[/^username$/] # 匹配
+  string[/\Ausername\z/] # 不匹配
+</code></pre></li>
+<li><p>针对复杂的正则表达式，使用 <code>x</code> 修饰符。这让它们的可读性更高并且你可以加入有用的注释。只是要小心忽略的空白。</p>
+
+<pre><code class="``Ruby">  regexp = %r{
+    start # 一些文字
+    \s # 空白字元
+    (group) # 第一组
+    (?:alt1|alt2) # 一些替代方案
+    end
+  }x
+</code></pre></li>
+<li><p>针对复杂的替换，<code>sub</code> 或 <code>gsub</code> 可以与区块或哈希来使用。</p></li>
+</ul>
+
+
+<h2>百分比字面</h2>
+
+<ul>
+<li><p>使用 <code>%()</code> 给需要插值与嵌入双引号的单行字符串。多行字符串，倾向使用 heredocs 。</p>
+
+<pre><code class="``Ruby">  # 差（不需要插值）
+  %(&lt;div class="text"&gt;Some text&lt;/div&gt;)
+  # 应该使用'&lt;div class="text"&gt;Some text&lt;/div&gt;'
+
+  # 差（没有双引号）
+  %(This is #{quality} style)
+  # 应该使用 "This is #{quality} style"
+
+  # 差（多行）
+  %(&lt;div&gt;\n&lt;span class="big"&gt;#{exclamation}&lt;/span&gt;\n&lt;/div&gt;)
+  # 应该是一个 heredoc
+
+  # 好（需要插值、有双引号以及单行）
+  %(&lt;tr&gt;&lt;td class="name"&gt;#{name}&lt;/td&gt;)
+</code></pre></li>
+<li><p>正则表达式要匹配多于一个的 <code>/</code> 字元时，使用 <code>%r</code>。</p>
+
+<pre><code class="``Ruby">  # 差
+  %r(\s+)
+
+  # 仍然差
+  %r(^/(.*)$)
+  # 应当是 /^\/(.*)$/
+
+  # 好
+  %r(^/blog/2011/(.*)$)
+</code></pre></li>
+<li>避免 <code>%q</code>, <code>%Q</code>, <code>%x</code>, <code>%s</code> 以及 <code>%W</code>。</li>
+<li>倾向使用 <code>()</code> 作为所有 <code>%</code> 字面的分隔符。</li>
+</ul>
+
+
+<h2>元编程</h2>
+
+<ul>
+<li><p>避免无谓的元编程。</p></li>
+<li><p>写一个函数库时不要使核心类混乱（不要使用 monkey patch）。</p></li>
+<li><p>倾向使用区块形式的 <code>class_eval</code> 而不是字符串插值(string-interpolated)的形式。</p>
+
+<ul>
+<li><p>当你使用字符串插值形式时，总是提供 <code>__FILE__</code> 及 <code>__LINE__</code>，使你的 backtrace 看起来有意义：</p>
+
+<pre><code class="ruby">class_eval "def use_relative_model_naming?; true; end", __FILE__, __LINE__
+</code></pre></li>
+<li><p>倾向使用 <code>define_method</code> 而不是 <code>class_eval{ def ... }</code></p></li>
+</ul>
+</li>
+<li><p>当使用 <code>class_eval</code> （或其它的<code>eval</code>）搭配字符串插值时，添加一个注解区块，来演示如果做了插值的样子（我从 Rails 代码学来的一个实践）：</p>
+
+<pre><code class="``ruby">  # activesupport/lib/active_support/core_ext/string/output_safety.rb
+  UNSAFE_STRING_METHODS.each do |unsafe_method|
+    if 'String'.respond_to?(unsafe_method)
+      class_eval &lt;&lt;-EOT, __FILE__, __LINE__ + 1
+        def #{unsafe_method}(*args, &amp;block) # def capitalize(*args, &amp;block)
+          to_str.#{unsafe_method}(*args, &amp;block) # to_str.capitalize(*args, &amp;block)
+        end # end
+
+        def #{unsafe_method}!(*args) # def capitalize!(*args)
+          @dirty = true # @dirty = true
+          super # super
+        end # end
+      EOT
+    end
+  end
+</code></pre></li>
+<li>元编程避免使用 <code>method_missing</code>。会让 Backtraces 变得很凌乱；行为没有列在 <code>#methods</code> 里；拼错的方法调用可能默默的工作（<code>nukes.launch_state = false</code>)。考虑使用 delegation, proxy, 或是 <code>define_method</code> 来取代。如果你必须使用 <code>method_missing</code>，
+
+<ul>
+<li>确保<a href="http://blog.marc-andre.ca/2010/11/methodmissing-politely.html">也定义了<code>respond_to_missing?</code></a></li>
+<li>仅捕捉字首定义良好的方法，像是 <code>find_by_*</code> ― 让你的代码愈肯定(assertive)愈好。</li>
+<li>在语句的最后调用 <code>super</code></li>
+<li><p>delegate 到确定的、非魔法方法中:</p>
+
+<pre><code class="ruby"># 差
+def method_missing?(meth, *args, &amp;block)
+  if /^find_by_(?&lt;prop&gt;.*)/ =~ meth
+    # ... lots of code to do a find_by
+  else
+    super
+  end
+end
+
+# 好
+def method_missing?(meth, *args, &amp;block)
+  if /^find_by_(?&lt;prop&gt;.*)/ =~ meth
+    find_by(prop, *args, &amp;block)
+  else
+    super
+  end
+end
+
+# 最好的方式，可能是每个可找到的属性被声明后，使用 define_method。
+</code></pre></li>
+</ul>
+</li>
+</ul>
+
+
+<h2>其它</h2>
+
+<ul>
+<li><code>ruby -w</code> 写安全的代码。</li>
+<li>避免使用哈希作为可选参数。这个方法是不是做太多事了？（对象初始器是本规则的例外）</li>
+<li>避免方法长于 10 行代码（LOC）。理想上，大部分的方法会小于5行。空行不算进LOC里。</li>
+<li>避免参数列表长于三或四个参数。</li>
+<li>如果你真的需要“全局”方法，把它们加到 Kernel 并设为私有的。</li>
+<li><p>使用模块变量代替全局变量。</p>
+
+<pre><code class="``Ruby">  # 差
+  $foo_bar = 1
+
+  # 好
+  module Foo
+    class &lt;&lt; self
+      attr_accessor :bar
+    end
+  end
+
+  Foo.bar = 1
+</code></pre></li>
+<li>当 <code>alias_method</code> 可以做到时，避免使用 <code>alias</code> 。</li>
+<li>使用 <code>OptionParser</code> 来解析复杂的命令行选项及 <code>ruby -s</code> 来处理琐碎的命令行选项。</li>
+<li>用函数式的方法编程，在有意义的情况下避免赋值(mutation)。</li>
+<li>不要改变参数，除非那是方法的目的。</li>
+<li>避免超过三层的区块嵌套。</li>
+<li>保持一致性。在理想的世界里，遵循这些准则。</li>
+<li>使用常识。</li>
+</ul>
+
+
+<h2>工具</h2>
+
+<p>以下是一些工具，让你自动检查 Ruby 代码是否符合本指南。</p>
+
+<h3>RuboCop</h3>
+
+<p><a href="https://github.com/bbatsov/rubocop">RuboCop</a> 是一个基于本指南的 Ruby 代码风格检查工具。 RuboCop 涵盖了本指南相当大的部分，支持 MRI 1.9 和 MRI 2.0，而且与 Emacs 整合良好。</p>
+
+<h3>RubyMine</h3>
+
+<p><a href="http://www.jetbrains.com/ruby/">RubyMine</a> 的代码检查是
+<a href="http://confluence.jetbrains.com/display/RUBYDEV/RubyMine+Inspections">部分基于</a>
+本指南的。</p>
+
+<h1>贡献</h1>
+
+<p>在本指南所写的每个东西都不是定案。这只是我渴望想与同样对 Ruby 编程风格有兴趣的大家一起工作，以致于最终我们可以替整个 Ruby 社区创造一个有益的资源。</p>
+
+<p>欢迎 open tickets 或 push 一个带有改进的更新请求。在此提前感谢你的帮助！</p>
+
+<h1>授权</h1>
+
+<p><img src="http://i.creativecommons.org/l/by/3.0/88x31.png" alt="Creative Commons License" />
+This work is licensed under a <a href="http://creativecommons.org/licenses/by/3.0/deed.zh">Creative Commons Attribution 3.0 Unported License</a></p>
+
+<h1>口耳相传</h1>
+
+<p>一份社区驱动的风格指南，如果没多少人知道，对一个社区来说就没有多少用处。微博转发这份指南，分享给你的朋友或同事。我们得到的每个评价、建议或意见都可以让这份指南变得更好一点。而我们想要拥有的是最好的指南，不是吗？</p>
+
+<p>共勉之，<br/>
+<a href="https://twitter.com/bbatsov">Bozhidar</a></p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>11 Sep 2014</span> &raquo; <a href="/reading/2014/09/11/%E5%93%B2%E5%AD%A6%E5%AE%B6%E7%B3%BB%E5%88%97(%E8%AF%91%E8%A8%80).html">哲学家系列(译言)</a></li>
+    
+      <li><span>05 Sep 2014</span> &raquo; <a href="/2014/09/05/just-building.html">Just Building</a></li>
+    
+      <li><span>21 Apr 2014</span> &raquo; <a href="/2014/04/21/farewell-github-hello-immersive-computing.html">Farewell GitHub, Hello Immersive Computing</a></li>
+    
+  </ul>
+</div>
+  
+  <div class="footer">
+    <div class="contact">
+      <p>
+        xiaofuzi<br />
+        Cofounder of <a href="http://github.com/">GitHub</a>
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="http://github.com/xiaofuzi/">github.com/xiaofuzi</a><br />
+      </p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
