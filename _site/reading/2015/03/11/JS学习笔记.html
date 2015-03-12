@@ -58,23 +58,21 @@
 * ECMAScript函数是按值传递的，但是传递引用类型时，也会按引用的方式类访问。
 注意以下两个函数的区别：</p>
 
-<p>1.
+<pre><code>1.
 function setName(obj){
-    obj.name = “Nicholas”;
+    obj.name = "Nicholas";
 }
 var person = new object();
 setName(person);
-alert(person.name);   //”Nicholas”</p>
+alert(person.name);   //"Nicholas"
 
-<p>2.
-function setName(obj){
-    obj.name = “Nicholas”;
+2.
+ function setName(obj){
+    obj.name = "Nicholas";
     obj = new Object();
-    obj.name = “Grel”
-}
-var person = new object();
-setName(person);
-alert(person.name);   //”Nicholas”在函数内部新建的变量只是一个局部变量，会随着函数作用域的结束而消失。</p>
+    obj.name = "Grel"
+} var person = new object(); setName(person); alert(person.name);   //"Nicholas"在函数内部新建的变量只是一个局部变量，会随着函数作用域的结束而消失。
+</code></pre>
 
 <h2 id="section">执行环境</h2>
 <p>执行环境定义了变量或函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都有一个与之关联的变量对象，环境中定义的所有变量和函数都保存在这个对象中。全局执行环境是最外围的执行环境，在web浏览器中，全局执行环境被认为是window对象，因此所有全局变量和函数都是作为window对象的属性和方法创建的。某个执行环境中的所有代码执行完毕后，该环境被销毁，保存在其中的所有变量和函数定义也随之销毁。</p>
@@ -86,11 +84,12 @@ alert(person.name);   //”Nicholas”在函数内部新建的变量只是一个
 
 <p>object对象的创建方式：</p>
 
-<p>1.var person = new object();
+<pre><code>1.var person = new object();
 2.var person ={
-    name:”Nicholas”,
+    name:"Nicholas",
     age:29
- }</p>
+}
+</code></pre>
 
 <p>第二种方式比较方便创建属性比较多的对象。</p>
 
@@ -99,7 +98,8 @@ alert(person.name);   //”Nicholas”在函数内部新建的变量只是一个
 
 <p>Function构造函数（不推荐做法）：</p>
 
-<p>var sum = new Function(“num1”, “num2”, “return num1+num2”);</p>
+<pre><code>var sum = new Function("num1", "num2", "return num1+num2");
+</code></pre>
 
 <h1 id="javascript-1">javascript面向对象程序设计</h1>
 <p>创建对象：</p>
@@ -137,50 +137,64 @@ alert(person.name);   //”Nicholas”在函数内部新建的变量只是一个
 <p>注：$是jQuery的简写。</p>
 
 <h2 id="jquerydom">jQuery对象、DOM对象</h2>
-<p>###DOM对象
-DOM(Document Object Model,文档对象模型)对象，每一份DOM都可以表示成一颗树。对于一份HTML源码中，每一个节点都是DOM元素节点，可以通过get
+
+<h3 id="dom">DOM对象</h3>
+<p>DOM(Document Object Model,文档对象模型)对象，每一份DOM都可以表示成一颗树。对于一份HTML源码中，每一个节点都是DOM元素节点，可以通过get
 ElementByTagName或者getElementById来获取得到。如下：</p>
 
-<p>var domObj = document.getElementById(“id”) //获得DOM对象
-###jQuery对象
-jQuery对象就是通过jQuery包装DOM对象后产生的对象。，jQuery对象是jQuery独有的，如果一个对象是jQuery对象，那么就可以使用jQuery里的方法。</p>
+<pre><code>var domObj = document.getElementById("id") //获得DOM对象
+</code></pre>
+
+<h3 id="jquery">jQuery对象</h3>
+<p>jQuery对象就是通过jQuery包装DOM对象后产生的对象。，jQuery对象是jQuery独有的，如果一个对象是jQuery对象，那么就可以使用jQuery里的方法。</p>
 
 <p>例如：(下面两段代码是等同的）</p>
 
-<p>$(“#foo”).html();</p>
+<pre><code>$("#foo").html();
 
-<p>document.getElementById(“foo”).innerHTML;</p>
+document.getElementById("foo").innerHTML;
+</code></pre>
 
-<h1 id="jquery">jQuery插件的使用和写法</h1>
+<h1 id="jquery-1">jQuery插件的使用和写法</h1>
 <p>首先要明白编写插件的目的是给已有的一系列方法或函数做一个封装，以便在其他地方重复使用，以提高开发效率。</p>
 
-<p>jQuery插件的种类
-*   封装对象方法的插件
-*   封装全局函数的插件
-*   选择器插件</p>
+<p>jQuery插件的种类</p>
 
-<p>插件的基本要点：
-* jQuery插件的文件名推荐命名为jquery.[插件名].js,以免和其他Javascript库插件混淆。
-* 所有的对象方法都应当附加到jQuery.fn对象上，而所有的全局函数都应当附加到jQuery对象本身上。
-* 在插件的内部，this指向的是当前通过选择器获取的jQuery对象，e不像一般方法那样，内部的this指向的是DOM元素。
-* 可以通过this.each来遍历所元素。
-* 所有的方法或函数插件，都应当以分号结尾，否则压缩的时候可能会出现问题。
-* 插件应该返回一个jQuery对象，以保证插件的可链式操作。
-* 避免在插件内部使用$作为jQuery对象的别名，而应使用完整的jQuery来表示。这样可以避免冲突。（可以使用闭包来回避这个问题）</p>
+<ul>
+  <li>封装对象方法的插件</li>
+  <li>封装全局函数的插件</li>
+  <li>选择器插件</li>
+</ul>
+
+<p>插件的基本要点：</p>
+
+<ul>
+  <li>jQuery插件的文件名推荐命名为jquery.[插件名].js,以免和其他Javascript库插件混淆。</li>
+  <li>所有的对象方法都应当附加到jQuery.fn对象上，而所有的全局函数都应当附加到jQuery对象本身上。</li>
+  <li>在插件的内部，this指向的是当前通过选择器获取的jQuery对象，e不像一般方法那样，内部的this指向的是DOM元素。</li>
+  <li>可以通过this.each来遍历所元素。</li>
+  <li>所有的方法或函数插件，都应当以分号结尾，否则压缩的时候可能会出现问题。</li>
+  <li>插件应该返回一个jQuery对象，以保证插件的可链式操作。</li>
+  <li>避免在插件内部使用$作为jQuery对象的别名，而应使用完整的jQuery来表示。这样可以避免冲突。（可以使用闭包来回避这个问题）</li>
+</ul>
 
 <p>常见的jQuery插件结构：</p>
 
-<p>;(function($){                //$作为形参
-    //此处编写jQuery插件代码
-    })(jQuery);               //jQuery作为实参</p>
+<pre><code>;(function($){                //$作为形参
+       //此处编写jQuery插件代码
+ })(jQuery);               //jQuery作为实参
+</code></pre>
 
-<p>扩展jQuery插件的两个方法：
-* jQuery.fn.extend()
-* jQuery.extend()</p>
+<p>扩展jQuery插件的两个方法：</p>
+
+<ul>
+  <li>jQuery.fn.extend()</li>
+  <li>jQuery.extend()</li>
+</ul>
 
 <p>前者用于扩展前面提到的3中类型插件的第一种，后者用于扩展后两中插件。jQuery.extend()还可以扩展object对象。</p>
 
-<h2 id="jquery-1">jQuery自定义选择器</h2>
+<h2 id="jquery-2">jQuery自定义选择器</h2>
 <p>jQuery的选择符解析器首先会使用一组正则表达式来解析选择器，然后针对解析出的每个选择符执行一个函数，称为选择器函数。最后根据这个选择器函数的返回值为true还是false来决定是否保留这个元素。</p>
 
 <h1 id="angularjs">3.Angular.js，动态网站构建</h1>
@@ -190,16 +204,20 @@ jQuery对象就是通过jQuery包装DOM对象后产生的对象。，jQuery对�
 
 <p>Angular中，模块是定义应用的最主要方式。模块包含了主要的应用代码。一个应用可以包含多个模块，每个模块都包含了定义具体功能的代码。</p>
 
-<p>模块化的好处：
-* 保持全局命名空间的清洁；
-* 编写测试代码更容易，并能保持其清洁，以便更容易找到相互隔离的功能；
-* 易于在不同应用间复用代码；
-* 使应用能够以任意顺序加载代码；</p>
+<p>模块化的好处：</p>
+
+<ul>
+  <li>保持全局命名空间的清洁；</li>
+  <li>编写测试代码更容易，并能保持其清洁，以便更容易找到相互隔离的功能；</li>
+  <li>易于在不同应用间复用代码；</li>
+  <li>使应用能够以任意顺序加载代码；</li>
+</ul>
 
 <p>Angular模块定义：
 Angular使用angular.module()方法来声明模块，这个方法能够接受两个参数，第一个是模块的名称，第二个是依赖列表，也就是可以被注入到模块中的对象列表。</p>
 
-<p>angular.module(‘myApp’, []);</p>
+<pre><code>angular.module('myApp', []);
+</code></pre>
 
 <p>在调用这个方法时如果只传递一个参数，就可以用它来引用模块。</p>
 
@@ -214,11 +232,13 @@ Angular使用angular.module()方法来声明模块，这个方法能够接受两
 <h2 id="scope">控制器（视图和$scope之间的桥梁）</h2>
 <p>Angular中的控制器是一个函数，用来向视图的作用域中添加额外的功能。我们用它来给作用域对象设置初始状态并添加自定义行为。当我们在页面上创建一个新的控制器时，Angular会生成并传递一个新的$scope给这个控制器。可以在这个控制器里初始化$scope.我们只需编写构造函数即可，Angular会负责控制器的实例化。</p>
 
-<p>比较好的控制器创建方式：
-var app = angular.module(‘app’,[]);
-app.controller(‘FirstController’,function($scope){
-   $scope.message = “hello”;
-   });</p>
+<p>比较好的控制器创建方式：</p>
+
+<pre><code>var app = angular.module('app',[]);
+     app.controller('FirstController',function($scope){
+     $scope.message = "hello";
+});
+</code></pre>
 
 <p>Angular让我们可以在视图中像调用普通数据一样调用$scope函数。</p>
 
