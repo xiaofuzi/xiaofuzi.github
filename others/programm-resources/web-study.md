@@ -1,7 +1,4 @@
----
-   layout: default
-   title:web study resources
----
+
 
 
 <h1>前端学习资源收集</h1>

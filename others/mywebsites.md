@@ -1,3 +1,6 @@
+
+
+
 <h1>some beatiful websites</h1>
 <ul class="posts">
 	<li><a href="http://www.yinwang.org/">wangyin's blog</a></li>

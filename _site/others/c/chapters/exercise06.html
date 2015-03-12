@@ -28,35 +28,32 @@
   </div>
  
   <div id="post">
-<h1>C中的变量类型</h1>
-
+<h1 id="c">C中的变量类型</h1>
 <p>在接下来我们会声明并定义不同类型的变量，以让你能够更好的理解一个简单的C程序的结构。</p>
 
 <div class="highlight"><pre><code class="language-c" data-lang="c"><span class="cp">#include&lt;stdio.h&gt;</span>
      <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
      <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-        <span class="kt">float</span> <span class="n">power</span> <span class="o">=</span> <span class="mf">2.345f</span><span class="p">;</span>
-        <span class="kt">double</span> <span class="n">super_power</span> <span class="o">=</span> <span class="mf">56789.4532</span><span class="p">;</span>
-        <span class="kt">char</span> <span class="n">initial</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
-        <span class="kt">char</span> <span class="n">first_name</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;zed&quot;</span><span class="p">;</span>
-        <span class="kt">char</span> <span class="n">last_name</span><span class="p">[]</span> <span class="o">=</span><span class="s">&quot;Shaw&quot;</span><span class="p">;</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;You are %d miles away.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;You have %f levels of power.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">power</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;You have %f awesome super powers.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">super_power</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I have an initial %c.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initial</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I have a first name %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">first_name</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;I have a last name %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="p">);</span>
-    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;My whole name is %s %c. %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">first_name</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">last_name</span><span class="p">);</span>
+     	<span class="kt">int</span> <span class="n">distance</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+     	<span class="kt">float</span> <span class="n">power</span> <span class="o">=</span> <span class="mf">2.345f</span><span class="p">;</span>
+     	<span class="kt">double</span> <span class="n">super_power</span> <span class="o">=</span> <span class="mf">56789.4532</span><span class="p">;</span>
+     	<span class="kt">char</span> <span class="n">initial</span> <span class="o">=</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+     	<span class="kt">char</span> <span class="n">first_name</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;zed&quot;</span><span class="p">;</span>
+     	<span class="kt">char</span> <span class="n">last_name</span><span class="p">[]</span> <span class="o">=</span><span class="s">&quot;Shaw&quot;</span><span class="p">;</span>
+     	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;You are %d miles away.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">distance</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;You have %f levels of power.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">power</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;You have %f awesome super powers.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">super_power</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;I have an initial %c.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">initial</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;I have a first name %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">first_name</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;I have a last name %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="p">);</span>
+	<span class="n">printf</span><span class="p">(</span><span class="s">&quot;My whole name is %s %c. %s.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="n">first_name</span><span class="p">,</span> <span class="n">initial</span><span class="p">,</span> <span class="n">last_name</span><span class="p">);</span>
 
-        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
       <span class="p">}</span></code></pre></div>
-
 
 <p>在这个程序中，我们声明了不同类型的变量然后使用不同的格式将其输出出来。</p>
 
-<h1>你应该看到什么？</h1>
-
+<h1 id="section">你应该看到什么？</h1>
 <p>有的输出应该和我的一样。我们已经输出字符串这么多次了，你应该会渐渐的发现C的字符串格式和Python等其它语言很相似。</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>make ex6
@@ -71,31 +68,27 @@ I have a last name Shaw.
 My whole name is Zed A. Shaw.
 <span class="err">$</span></code></pre></div>
 
-
 <p>你可以看到我们设置了许多类型的变量并赋予相匹配类型的变量值，变量的类型会告诉编译器它的变量类型是怎样的（存储结构是怎样的）。</p>
 
-<h2>整型</h2>
+<h2 id="section-1">整型</h2>
+<p>整型使用” int “来声明并使用” %d “来输出。</p>
 
-<p>整型使用" int "来声明并使用" %d "来输出。</p>
+<h2 id="section-2">浮点型</h2>
+<p>浮点型分单精度和双精度类型，分别用” float”和”double”类型来声明，使用” f%“来输出。</p>
 
-<h2>浮点型</h2>
+<h2 id="section-3">字符</h2>
+<p>使用” char “关键字声明，赋值的字符使用单引号扩起来，输出使用” %C”。</p>
 
-<p>浮点型分单精度和双精度类型，分别用" float"和"double"类型来声明，使用” f%“来输出。</p>
+<h2 id="section-4">字符串(字符数组)</h2>
+<p>使用 “char *name[]”的形式声明，赋值使用双引号将字符串包含起来，输出时使用”%s”格式控制符。</p>
 
-<h2>字符</h2>
+<blockquote>
+  <p>注意
+当我在说明C类型的时候，我会使用 “char[]”的形式而不是” char SOMENAME[]”的形式。这只是为了方便说明和方便英文书写而已，那并不是合法的C书写格式。</p>
+</blockquote>
 
-<p>使用" char "关键字声明，赋值的字符使用单引号扩起来，输出使用" %C"。</p>
-
-<h2>字符串(字符数组)</h2>
-
-<p>使用 "char *name[]"的形式声明，赋值使用双引号将字符串包含起来，输出时使用"%s"格式控制符。</p>
-
-<blockquote><p>注意
-当我在说明C类型的时候，我会使用 "char[]"的形式而不是" char SOMENAME[]"的形式。这只是为了方便说明和方便英文书写而已，那并不是合法的C书写格式。</p></blockquote>
-
-<h1>如何打破？</h1>
-
-<p>你可以通过传送错误的参数给" printf()"来是程序运行出错。例如，你将输出我的名字的那行的"initial"与"first_name"变量交换位置，你就会发现你的函数会产生错误。当你运行修改后的程序，你会发现编译器给出一大堆的错误信息，你也许会得到“Segmentation fault”这样的错误，就像我那样：</p>
+<h1 id="section-5">如何打破？</h1>
+<p>你可以通过传送错误的参数给” printf()”来是程序运行出错。例如，你将输出我的名字的那行的”initial”与”first_name”变量交换位置，你就会发现你的函数会产生错误。当你运行修改后的程序，你会发现编译器给出一大堆的错误信息，你也许会得到“Segmentation fault”这样的错误，就像我那样：</p>
 
 <div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>make ex6
 cc -Wall -g    ex6.c   -o ex6
@@ -112,18 +105,16 @@ I have a last name Shaw.
 Segmentation fault
 <span class="err">$</span></code></pre></div>
 
-
 <p>使用Valgrind运行你的程序，看它会告诉你关于“Invalid read of size 1”的信息。</p>
 
-<h1>课外练习</h1>
+<h1 id="section-6">课外练习</h1>
 
 <ul>
-<li>使用其它的方式去更改printf函数的代码，然后编译运行，看发生了什么，最后修复它。</li>
-<li>在网上查找关于 " printf formats "的信息，然后实在去练习使用。</li>
-<li>探究看你可以使用几种方式来写一个数字，尝试八进制，十六进制以及其它你找到的方法。</li>
-<li>尝试打印输出一个空的字符串。</li>
+  <li>使用其它的方式去更改printf函数的代码，然后编译运行，看发生了什么，最后修复它。</li>
+  <li>在网上查找关于 “ printf formats “的信息，然后实在去练习使用。</li>
+  <li>探究看你可以使用几种方式来写一个数字，尝试八进制，十六进制以及其它你找到的方法。</li>
+  <li>尝试打印输出一个空的字符串。</li>
 </ul>
-
 
 </div>
 

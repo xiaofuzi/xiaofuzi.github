@@ -28,16 +28,16 @@
   </div>
  
   <div id="post">
-<h1>Writing a domain-Specific Language in Ruby(使用ruby来编写一门领域专属语言)</h1>
+<h1 id="writing-a-domain-specific-language-in-rubyruby">Writing a domain-Specific Language in Ruby(使用ruby来编写一门领域专属语言)</h1>
 
 <p>领域专属语言(DSL)，是一种针对某一领域的编程语言，只拥有少量的语法。这会使你更容易于解决某一个领域里的问题而不去受多余的代码的影响。同时也方便于代码的阅读，因为这些代码的表达意图很明确。</p>
 
-<h2>下面来看一个用ruby实现的DSL的例子：</h2>
+<h2 id="rubydsl">下面来看一个用ruby实现的DSL的例子：</h2>
 
 <pre><code>Smokestack.define do
 factory User do
-    name "Gabe BW"
-    pet_name "Toto"
+	name "Gabe BW"
+	pet_name "Toto"
 end
 end
 
@@ -52,22 +52,20 @@ puts other_user.pet_name == 'Toto' # true
 
 <p>下面我们来解析一下每一个部分，看它是如何工作的。</p>
 
-<h2>开始创建</h2>
-
+<h2 id="section">开始创建</h2>
 <p>首先我们定义一个 User 和 Post 类以便于用在我们的构建器中。</p>
 
 <pre><code>class User
    attr_accessor :name, :pet_name
  end
-
+ 
  class Post
  end
 </code></pre>
 
 <p>我们将会通过post来引用这些内容。</p>
 
-<h2>识别方法调用</h2>
-
+<h2 id="section-1">识别方法调用</h2>
 <p>当我第一眼看到 Smokestack.define 时，我很难理解方法是如何被调用的。我们给它增加一些参数：</p>
 
 <pre><code>Smokestack.define  do
@@ -80,15 +78,13 @@ end
 
 <p>这样会比较清晰一点，我们可以看到 Smokestack.define 带有一个块，然后factory函数接收一个类（User或者是一个block）作为参数，但是factory方法是在哪里定义的呢？</p>
 
-<h2>instance_eval</h2>
-
+<h2 id="instanceeval">instance_eval</h2>
 <p>在这里我们需要使用instance_eval这个函数，每一个类都可以使用该函数(说明，该函数的接受者是实例对象，但类也是一个实例对象，所有类也可以调用，注意与 class_eval 的区别）。
-一下是它的文档说明：</p>
-
-<blockquote><blockquote><p>Evaluates a string containing Ruby source code, or the given block, within the
+一下是它的文档说明：
+»Evaluates a string containing Ruby source code, or the given block, within the
 context of the receiver (obj). In order to set the context, the variable self is
 set to obj while the code is executing, giving the code access to obj’s instance
-variables.</p></blockquote></blockquote>
+variables.</p>
 
 <p>下面来看一个例子：</p>
 
@@ -104,10 +100,9 @@ definition_proxy.instance_eval do
 end
 </code></pre>
 
-<p>代码输出如下：</p>
-
-<blockquote><blockquote><p>OK,defining a User factory.
-Ok,defining a Post factory.</p></blockquote></blockquote>
+<p>代码输出如下：
+»OK,defining a User factory.
+Ok,defining a Post factory.</p>
 
 <p>factory User 和 factory Post 是在definiton_proxy实例的上下文环境中执行的，也就是说在代码块 definiton_proxy.instance_eval中的部分等同于 definition_proxy.factory(User).</p>
 
@@ -123,8 +118,7 @@ end
 
 <p>现在Smokestack.define 成了我们的DSL的入口，向它传人一个代码块，然后该代码块会在DefinitiongProxy的实例对象中执行。</p>
 
-<h2>注册构建器</h2>
-
+<h2 id="section-2">注册构建器</h2>
 <p>现在代码已经可以工作了，让我们添加构建器。在我们给构建器添加引用之前，它是不会工作的，在那之前我们需要一个注册中心。最简单的注册器就是一个哈希列表，用来将构建器和构建类对应起来。</p>
 
 <p>下面的代码给了我们一个Smokestack.registry:</p>
@@ -156,8 +150,7 @@ Smokestack.registry[User].call  #OK,creating a User.
 Smokestack.registry[User].call  #Ok,creating a User.
 </code></pre>
 
-<h2>更深层次的解析</h2>
-
+<h2 id="section-3">更深层次的解析</h2>
 <p>现在我们可以声明一个构建器了，但是现在它什么也不做，让我们来看一下原先的代码：</p>
 
 <pre><code>factory User do
@@ -177,35 +170,34 @@ return user
 <p>就像Factory Girl一样，我们假设：</p>
 
 <ol>
-<li>factory User 会引用User类</li>
-<li>User类里为factory中的属性定义了相应的设置方法。</li>
+  <li>factory User 会引用User类</li>
+  <li>User类里为factory中的属性定义了相应的设置方法。</li>
 </ol>
-
 
 <p>不同的factory的设置方法可能不同，为此我们用method_missing来解决这个问题。</p>
 
 <p>如下：</p>
 
 <pre><code>class Factory &lt; BasicObject
-    def initialize
-    @attributes = {}
-    end
-
-    attr_reader :attributes
-
-    def method_missing(name, *args, &amp;block)
-    attributes[name] = args[0]
+ 	def initialize
+	@attributes = {}
+ 	end
+  	 		
+	attr_reader :attributes
+  
+ 	def method_missing(name, *args, &amp;block)
+	attributes[name] = args[0]
 end
 end
 
 class DefinitionProxy
-    def factory(factory_class, &amp;block)
-    factory = Factory.new
-    if block_given?
-    factory.instance_eval(&amp;block)
-    end
-    Smokestack.registry[factory_class] = factory
-    end
+	def factory(factory_class, &amp;block)
+	factory = Factory.new
+	if block_given?
+  	factory.instance_eval(&amp;block)
+	end
+	Smokestack.registry[factory_class] = factory
+	end
 end
 </code></pre>
 
@@ -215,16 +207,15 @@ end
 
 <p>现在我们的Smokestack.define可以工作了，再来添加Smokestack.build.</p>
 
-<h2>Smokestack.build</h2>
+<h2 id="smokestackbuild">Smokestack.build</h2>
 
 <p>Smokestack.build(User) 需要做如下的功能：</p>
 
 <ol>
-<li>抓取 user factory.</li>
-<li>设定user的部分或全部属性。</li>
-<li>返回user对象。</li>
+  <li>抓取 user factory.</li>
+  <li>设定user的部分或全部属性。</li>
+  <li>返回user对象。</li>
 </ol>
-
 
 <p>为了得到属性，我们需要从注册器中抓取。我们让Smokestack.build 的第一个参数为可选参数，这样可以允许用户自定义参数。</p>
 
@@ -247,7 +238,7 @@ instance
 end
 </code></pre>
 
-<h2>完整的实现</h2>
+<h2 id="section-4">完整的实现</h2>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">module</span> <span class="nn">Smokestack</span>
      <span class="vi">@registry</span> <span class="o">=</span> <span class="p">{}</span>
@@ -291,7 +282,6 @@ end
      <span class="k">end</span>
     <span class="k">end</span></code></pre></div>
 
-
 <p>运行结果：</p>
 
 <div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="no">Smokestack</span><span class="o">.</span><span class="n">define</span> <span class="k">do</span>
@@ -313,20 +303,17 @@ end
     <span class="nb">puts</span> <span class="n">other_user</span><span class="o">.</span><span class="n">pet_name</span>
     <span class="c1">#=&gt; &quot;Toto&quot;</span></code></pre></div>
 
-
-<h2>可以变得更好吗？</h2>
-
+<h2 id="section-5">可以变得更好吗？</h2>
 <p>使用factory User 的形式与rails和Factory Girl相比好像过时了。我们可以使用如下的形式会更好，factory :user.我们可以通过纯ruby或ActiveSupport来实现：</p>
 
 <pre><code># Plain Ruby
 Object.const_get(:user.capitalize) #=&gt; User
-
+ 
 # ActiveSupport
 :user.capitalize.constantize #=&gt; User
 </code></pre>
 
-<h1>更深的学习</h1>
-
+<h1 id="section-6">更深的学习</h1>
 <p>想了解更多的关于DSL的例子，可以阅读factory_girl或是Raisl routes.</p>
 
 <p>原文地址：<a href="http://robots.thoughtbot.com/writing-a-domain-specific-language-in-ruby">http://robots.thoughtbot.com/writing-a-domain-specific-language-in-ruby</a></p>
