@@ -13,13 +13,16 @@
 * [Gulp](http://gulpjs.com/)：项目构建
 * [yeoman](http://yeoman.io)：ｗｅｂ集成开发工具
 
+
 ###类库，框架
 
 * [Angularjs](http://angularjs.org)
 * [Bootstrap中文网](http://www.bootcss.com/)
 * [Meteor:实时webapp开发](https://www.meteor.com/)
 
+
 ###编辑器及相关
 
 * [Markdown语法说明](http://wowubuntu.com/markdown/)
 * [sublimetext](http://www.sublimetext.com/)
+

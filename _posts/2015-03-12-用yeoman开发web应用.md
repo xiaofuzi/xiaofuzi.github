@@ -3,6 +3,7 @@ layout: post
 title: 使用yeoman开发web应用
 category: reading, programm
 ---
+
 ##认识[yeoman](http://yeoman.io)
 Yeoman是一个可以帮助我们高效的开发Webapp的工具，它内置了yo,bower,grunt三个工具，这三者都是对web开发十分便利的开发利器（如果你觉得Yeoman过于臃肿，可以单独使用以上的工具）。
 
