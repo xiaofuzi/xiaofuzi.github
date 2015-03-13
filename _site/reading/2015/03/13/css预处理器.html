@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>使用CSS预处理器</title>
+   <meta name="author" content="小福的博客" />
+ 
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+   <script type="text/javascript" src="/js/name.js"></script>
+
+</head>
+<body>
+
+
+
+<div class="site">
+  <div class="title">
+    <a href="/">小福</a>
+    <a class="extra" href="/">首页</a>
+    
+    <a class="extra" href="/others/mywebsites.html">Love websites</a>
+     <a class="extra" href="http://www.douban.com/people/xiaofuzhi/doulists/all">我的豆列</a>
+  </div>
+ 
+  <div id="post">
+<h2 id="css">CSS预处理器</h2>
+<p>作为web开发者，我们应该知道，CSS并不是一门编程语言，并不具有编程语言应有的函数，变量，判断语句等，只是一行行单纯的描述，在编写效率上是很低的。所有就出现了CSS预处理器，即用一种编程语言编写网页样式设计代码，才编译成CSS,最后一起渲染网页。</p>
+
+<h3 id="css-1">两种比较流行的CSS预处理器</h3>
+
+<ul>
+  <li><a href="http://sass-lang.com/">Sass</a>是一种动态样式语言，语法跟css一样(但多了些功能)，比css好写，而且更容易阅读。Sass语法类似与<a href="http://haml.info/">Haml</a>，属于缩排语法（makeup），用意就是为了快速写Html和Css。Scss即Sass 3,预防语法上用{}取代了原来的缩进。</li>
+  <li><a href="http://www.lesscss.net/">Less</a>一种动态样式语言. 将CSS赋予了动态语言的特性，如变量，继承，运算， 函数. LESS 既可以在客户端上运行 (支持IE 6+, Webkit, Firefox)，也可一在服务端运行 (借助 Node.js)。</li>
+</ul>
+
+<h2 id="sass">Sass</h2>
+<p>Sass是Ruby语言写的，但两者在语法上没有关系，只是在安装Sass前需要安装Ruby.</p>
+
+<h4 id="sass-1">Sass提供四个编译风格:</h4>
+
+<ul>
+  <li>nested: 嵌套缩进的css代码，它是默认值。</li>
+  <li>expanded:没有缩进的，扩展的CSS代码。</li>
+  <li>compact:简洁格式的css代码。</li>
+  <li>compressed:压缩后的CSS代码。</li>
+</ul>
+
+<h4 id="sass-2">Sass语法</h4>
+
+<ul>
+  <li>变量:变量以$开头</li>
+  <li>计算功能：可以使用算式( margin: 40px + 50px)</li>
+  <li>选择器，属性可以嵌套</li>
+  <li>注释/* <em>/或//(/</em>!重要注释*/)有感叹号的注释压缩状态也会保留。</li>
+  <li>选择器可以继承</li>
+  <li>
+    <p>Mixin，类似C语言中的宏，是可重用的代码，可带参数和缺省值。</p>
+
+    <pre><code>    //定义
+    @mixin left($value: 10px){
+    float:left;
+    margin:$value
+    }
+    //调用
+    div{
+     @include left(20px);
+    }
+</code></pre>
+  </li>
+  <li>颜色函数</li>
+  <li>插入文件:使用@import来插入外部文件(@import “path/filename.scss”;)</li>
+  <li>条件语句@if  @else</li>
+  <li>
+    <p>for,while,each循环(“#{}”与ruby字符提取类似)　</p>
+
+    <pre><code> @for $i from 1 to 10{
+       .border-#{$i}{
+    border:#{$i}px solid blue;
+ }}
+</code></pre>
+  </li>
+  <li>
+    <p>自定义函数</p>
+
+    <pre><code>  @function double($n){
+      @return $n*2;
+   }
+   #sidebar{
+      width:double(5px);
+   }
+</code></pre>
+  </li>
+</ul>
+
+</div>
+
+  
+  <div class="footer">
+    <div class="contact">
+      <p>
+        xiaofuzi
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="http://github.com/xiaofuzi/">github.com/xiaofuzi</a><br />
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
