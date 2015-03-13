@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 使用yeoman开发web应用
-category: reading, programm
+category: reading
 ---
 
 ##认识[yeoman](http://yeoman.io)
