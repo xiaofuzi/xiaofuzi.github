@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Developing Your Css Framework</title>
+   <meta name="author" content="小福的博客" />
+ 
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+   <script type="text/javascript" src="/js/name.js"></script>
+
+</head>
+<body>
+
+
+
+<div class="site">
+  <div class="title">
+    <a href="/">小福</a>
+    <a class="extra" href="/">首页</a>
+    
+    <a class="extra" href="/others/mywebsites.html">Love websites</a>
+     <a class="extra" href="http://www.douban.com/people/xiaofuzhi/doulists/all">我的豆列</a>
+  </div>
+ 
+  <h1 id="developing-your-css-framework">Developing Your Css Framework</h1>
+
+<h2 id="dividerule">Divide&amp;Rule</h2>
+<p>我们经常用CSS来进行布局、排版、表单以及一些常用元素列表、图片、等，确保我们的网页在所有的浏览器上都能很好的显示。当然我们还会有一些常用的组件像menu、gallery、slider等。编写CSS框架的目的即将我们经常使用的通用部分提取出来，这样就可以提高我们的开发效率。</p>
+
+<p>我们可以将CSS按如下分类（并不一定需要如此划分）：</p>
+
+<ul>
+  <li>reset.css</li>
+  <li>base.css</li>
+  <li>typography.css</li>
+  <li>layout.css</li>
+  <li>form.css</li>
+  <li>table.css</li>
+  <li>broser.css</li>
+  <li>print.css</li>
+</ul>
+
+<h2 id="section">下面列出几个可参考的资源：</h2>
+<p>不同的浏览器对原生HTML的解析样式是有所不同的，如(margin,padding,border,outline etc),为了使我们的CSS框架的展现效果在各种浏览器中都能得到一致的效果，我们需要重新定义这些样式效果。</p>
+
+<ul>
+  <li><a href="http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/">Eric Meyer CSS Reset</a></li>
+  <li><a href="http://developer.yahoo.com/yui/reset/">YUI Reset CSS</a></li>
+  <li><a href="http://www.yyyweb.com/demo/inner-show/normalize.html"> Normalize.css</a>(bootstrap使用该reset)
+以上是两个主流的框架的reset.css部分，可以作为参考。</li>
+  <li><a href="http://developer.yahoo.com/yui/base/">YUI Base CSS</a></li>
+</ul>
+
+<p>排版和布局会因设计因素而有很大的影响，所以是否要引入这两个部分是有争议的，也可以引入多种类型的排版和布局方式。</p>
+
+<h2 id="section-1">浏览器兼容</h2>
+
+<ul>
+  <li><a href="http://www.onderhond.com/tools/ie6fixer/">IE6 CSS Fixer: Starter Kit</a></li>
+  <li><a href="http://www.webdevout.net/css-hacks">CSS Hack</a></li>
+  <li><a href="http://www.edgeofmyseat.com/blog/developing-css-for-ie6-and-7">Developing CSS for IE6 and 7</a></li>
+  <li><a href="http://www.positioniseverything.net/explorer.html">Explorer Exposed!</a></li>
+</ul>
+
+<h3 id="step1resetcssbasecss">Step1：reset.css，base.css</h3>
+<p>Normalize.css 是一个可定制的 CSS 文件，使浏览器呈现的所有元素，更一致和符合现代标准。它正是针对只需要统一的元素样式。该项目依赖于研究浏览器默认元素风格之间的差异，精确定位需要重置的样式。这是一个现代的，HTML5-ready 的 CSS 重置样式集。使用其作为我们框架的CSS重置集。</p>
+
+<h3 id="step2">Step2:栅格系统设计</h3>
+<p>目标：</p>
+
+<ul>
+  <li>响应式</li>
+  <li>流式布局</li>
+  <li>移动支持</li>
+  <li>支持嵌套</li>
+</ul>
+
+
+  
+  <div class="footer">
+    <div class="contact">
+      <p>
+        xiaofuzi
+      </p>
+    </div>
+    <div class="contact">
+      <p>
+        <a href="http://github.com/xiaofuzi/">github.com/xiaofuzi</a><br />
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
