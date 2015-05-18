@@ -1,2 +1,21 @@
-# Build settings
-markdown: kramdown
+#导航变量
+#主页：home_path
+#分类浏览：category_path
+#网址导航：navsite_path
+#书单：book_path
+#实验室：geeklab_path
+#生活：life_path
+#关于：about_path
+
+home_path: "/index.html"
+category_path: "/category.html"
+navsite_path: "/websites"
+book_path: "/booklists"
+geeklab_path: "/geeklab"
+life_path: "/theworld"
+about_path: "/aboutme"
+
+
+permalink: /:categories/:year/:month/:day/:title 
+
+ASSET_PATH: false

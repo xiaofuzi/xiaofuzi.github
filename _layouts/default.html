@@ -1,46 +1,61 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<!DOCTYPE>
+<html>
 <head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>{{ page.title }}</title>
-   <meta name="author" content="小福的博客" />
- 
-   <!-- syntax highlighting CSS -->
-   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+	<meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+	<!-- Enable responsive viewport -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ page.title }}</title>
 
-   <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+	<!--  bootstrap theme -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+	<link rel="stylesheet" href="/assets/css/custom.css"/>
 
-   <script type="text/javascript" src="/js/name.js"></script>
 
+	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 </head>
-<body>
-
-
-
-<div class="site">
-  <div class="title">
-    <a href="/">小福</a>
-    <a class="extra" href="/">首页</a>
-    
-    <a class="extra" href="/others/mywebsites.html">Love websites</a>
-     <a class="extra" href="http://www.douban.com/people/xiaofuzhi/doulists/all">我的豆列</a>
-  </div>
- 
-  {{ content }}
-  
-  <div class="footer">
-    <div class="contact">
-      <p>
-        xiaofuzi
-      </p>
-    </div>
-    <div class="contact">
-      <p>
-        <a href="http://github.com/xiaofuzi/">github.com/xiaofuzi</a><br />
-      </p>
-    </div>
-  </div>
-</div>
-</body>
+	<body>
+		<!-- the header theme -->
+		<div id="header">
+                    <div class="container-fluid">
+			       <div class="navbar ">
+      					<ul class="nav navbar-nav">
+                                       <li>
+                                              <a href="/" class="navbar-brand">豆豆</a>
+                                       </li>
+      						<li>
+          						<a href="/home.html">首页</a>
+        					</li>
+        					<li>
+          							<a href="/category.html">分类浏览</a>
+        					</li>
+        					<li>
+          							<a href="/websites">网址收藏</a>
+        					</li>
+        					<li >
+          							<a href="/books">书单</a>
+        					</li>
+        					<li><a href="/geeklab" >实验室</a></li>
+      					</ul>
+      					<ul class="nav navbar-nav navbar-right">
+        						<li><a href="/mylife" >生活</a></li>
+        						<li><a href="about" >关于</a></li>
+      					</ul>
+    				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                      {{ content }}
+                                </div>
+                          </div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container-fluid text-center">
+				<p>关于我</p>
+			</div>
+		</div>
+	</body>
 </html>

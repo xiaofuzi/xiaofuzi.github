@@ -1,0 +1,109 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+	<!-- Enable responsive viewport -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>使用yeoman开发web应用</title>
+
+	<!--  bootstrap theme -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+	<link rel="stylesheet" href="/assets/css/custom.css"/>
+
+
+	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+</head>
+	<body>
+		<!-- the header theme -->
+		<div id="header">
+                    <div class="container-fluid">
+			       <div class="navbar ">
+      					<ul class="nav navbar-nav">
+                                       <li>
+                                              <a href="/" class="navbar-brand">豆豆</a>
+                                       </li>
+      						<li>
+          						<a href="/home.html">首页</a>
+        					</li>
+        					<li>
+          							<a href="/category.html">分类浏览</a>
+        					</li>
+        					<li>
+          							<a href="/websites">网址收藏</a>
+        					</li>
+        					<li >
+          							<a href="/books">书单</a>
+        					</li>
+        					<li><a href="/geeklab" >实验室</a></li>
+      					</ul>
+      					<ul class="nav navbar-nav navbar-right">
+        						<li><a href="/mylife" >生活</a></li>
+        						<li><a href="about" >关于</a></li>
+      					</ul>
+    				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                      <div id="post">
+	<h2 id="yeomanhttpyeomanio">认识<a href="http://yeoman.io">yeoman</a></h2>
+<p>Yeoman是一个可以帮助我们高效的开发Webapp的工具，它内置了yo,bower,grunt三个工具，这三者都是对web开发十分便利的开发利器（如果你觉得Yeoman过于臃肿，可以单独使用以上的工具）。</p>
+
+<p><img src="http://ww3.sinaimg.cn/mw690/7cc829d3gw1ehy6vblvjsj20gj0net9v.jpg" alt="yeoman" /></p>
+
+<ul>
+  <li>yo是一个生成器，用于构建特定框架的生态系统的代码工具。</li>
+  <li><a href="http://gruntjs.com/">Grunt</a>或者<a href="http://gulpjs.com/">Gulp</a>,项目的创建，预览以及测试工具。</li>
+  <li><a href="http://bower.io/">bower</a>，一个包管理工具。</li>
+</ul>
+
+<h2 id="yeoman">yeoman安装</h2>
+<p>首先需要安装如下的依赖项：</p>
+
+<ul>
+  <li>Node.js</li>
+  <li>npm</li>
+</ul>
+
+<p>然后使用如下命令安装yeoman</p>
+
+<pre><code> $ npm install --global yo
+ $ yo --version &amp;&amp; bower --version &amp;&amp; grunt --version //查看是否安装成功
+ $ yo      //进入yo菜单
+</code></pre>
+
+<h2 id="section">生成器安装</h2>
+<pre><code>npm install -g generator-angular
+</code></pre>
+
+<h2 id="todoshttpblogjobbolecom65399comment-147241">一个简单的例子<a href="http://blog.jobbole.com/65399/#comment-147241">参考实现Todos</a></h2>
+<p>新建一个目录并进入到该目录中，运行生成器</p>
+
+<pre><code> $yo angular
+</code></pre>
+
+<p>yo会询问你是否要加载一些共同开发的类库以及选择你需要使用的Angular模块。</p>
+
+<p>安装完成后，就可以在浏览器中查看你的应用</p>
+
+<pre><code> grunt serve  //该命令会启动一个基于Node的http服务
+</code></pre>
+
+<p>这里会通过一系列的Grunt任务来监视你的文件更改情况，一旦发现文件发生修改就会自动刷新应用。</p>
+
+<h4 id="httpsgithubcomxiaofuziyeoman-todos"><a href="https://github.com/xiaofuzi/yeoman-todos">我的示例代码</a></h4>
+
+</div>
+                                </div>
+                          </div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container-fluid text-center">
+				<p>关于我</p>
+			</div>
+		</div>
+	</body>
+</html>

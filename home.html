@@ -1,0 +1,21 @@
+---
+layout: default
+title: 豆豆的文章
+---
+<h3>Are you joking?</h3>
+<div class="page_lists">
+	<div　class="row ">
+	
+		<div class="list-group">
+    			{% for post in site.posts %}
+    
+      			 <a href="{{ post.url }}" class="list-group-item">
+      				{% for tag in post.tags %}
+					<span class="badge">{{ tag }}</span>
+				{% endfor %}
+      				{{ post.title }}</a>
+      			
+    			{% endfor%}
+  		</div>
+  	</div>
+</div>

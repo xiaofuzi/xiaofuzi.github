@@ -1,0 +1,123 @@
+/* Global Reset */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: white;
+  /*font: 13.34px helvetica, arial, clean, sans-serif;
+  *font-size: small;
+  text-align: center;*/
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+h1 {
+  margin-bottom: 1em;
+}
+
+p {
+  margin: 1em 0;
+}
+
+a {
+  color: #00a;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+}
+
+a:visited {
+  color: #a0a;
+}
+
+ #post ul{
+  list-style-type: none;
+  margin-bottom: 2em;
+}
+
+ #post li {
+    line-height: 1.75em;
+  }
+
+#post span {
+    color: #aaa;
+    font-family: Monaco, "Courier New", monospace;
+    font-size: 80%;
+  }
+/*
+* 全局样式
+* 配色方案：rgb(113,175,164);rgb(170,138,87);rgb(255,255,255);
+* (棕，青，白)所占比重依次降低
+* link-color:#337ab7，偏蓝；
+*
+*/
+body{
+	background-color: rgb(255,255,255);
+	height: 100%;
+}
+
+/*
+* 自定义头部导航的布局
+*/
+#header{
+	background-color: rgb(87, 105, 60);
+	height: 10%;
+	min-height: 50px;
+}
+.navbar{
+	border-radius: 0px;
+}
+
+#header a {
+    color: white;
+    text-decoration: none;
+}
+#header a:hover {
+    color: rgb(62, 188, 202);
+    font-size: 16px;
+    background-color: rgb(87, 105, 60);
+    text-decoration: none;
+}
+/*
+* custom the content style
+*/
+#content{
+	position: relative;
+	min-height: 90%;
+}
+
+#footer{
+	color: white;
+	height: 100px;
+	padding-top: 20px;
+	background-color: gray;
+}
+
+/*
+* custom the post style
+*/
+
+#post{
+	margin: 20px auto;
+}
+
+.page_lists{
+	margin-top: 20px;
+}
+
+.page_lists li{
+	list-style: none;
+}
+

@@ -1,0 +1,149 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+	<!-- Enable responsive viewport -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>使用CSS预处理器</title>
+
+	<!--  bootstrap theme -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+	<link rel="stylesheet" href="/assets/css/custom.css"/>
+
+
+	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+</head>
+	<body>
+		<!-- the header theme -->
+		<div id="header">
+                    <div class="container-fluid">
+			       <div class="navbar ">
+      					<ul class="nav navbar-nav">
+                                       <li>
+                                              <a href="/" class="navbar-brand">豆豆</a>
+                                       </li>
+      						<li>
+          						<a href="/home.html">首页</a>
+        					</li>
+        					<li>
+          							<a href="/category.html">分类浏览</a>
+        					</li>
+        					<li>
+          							<a href="/websites">网址收藏</a>
+        					</li>
+        					<li >
+          							<a href="/books">书单</a>
+        					</li>
+        					<li><a href="/geeklab" >实验室</a></li>
+      					</ul>
+      					<ul class="nav navbar-nav navbar-right">
+        						<li><a href="/mylife" >生活</a></li>
+        						<li><a href="about" >关于</a></li>
+      					</ul>
+    				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                      <div id="post">
+	<h2 id="css">CSS预处理器</h2>
+<p>作为web开发者，我们应该知道，CSS并不是一门编程语言，并不具有编程语言应有的函数，变量，判断语句等，只是一行行单纯的描述，在编写效率上是很低的。所有就出现了CSS预处理器，即用一种编程语言编写网页样式设计代码，才编译成CSS,最后一起渲染网页。</p>
+
+<h3 id="css-1">两种比较流行的CSS预处理器</h3>
+
+<ul>
+  <li><a href="http://sass-lang.com/">Sass</a>是一种动态样式语言，语法跟css一样(但多了些功能)，比css好写，而且更容易阅读。Sass语法类似与<a href="http://haml.info/">Haml</a>，属于缩排语法（makeup），用意就是为了快速写Html和Css。Scss即Sass 3,预防语法上用{}取代了原来的缩进。</li>
+  <li><a href="http://www.lesscss.net/">Less</a>一种动态样式语言. 将CSS赋予了动态语言的特性，如变量，继承，运算， 函数. LESS 既可以在客户端上运行 (支持IE 6+, Webkit, Firefox)，也可一在服务端运行 (借助 Node.js)。</li>
+</ul>
+
+<h2 id="sass">Sass</h2>
+<p>Sass是Ruby语言写的，但两者在语法上没有关系，只是在安装Sass前需要安装Ruby.</p>
+
+<h4 id="sass-1">Sass提供四个编译风格:</h4>
+
+<ul>
+  <li>nested: 嵌套缩进的css代码，它是默认值。</li>
+  <li>expanded:没有缩进的，扩展的CSS代码。</li>
+  <li>compact:简洁格式的css代码。</li>
+  <li>compressed:压缩后的CSS代码。</li>
+</ul>
+
+<h4 id="sass-2">Sass语法</h4>
+
+<ul>
+  <li>变量:变量以$开头</li>
+  <li>计算功能：可以使用算式( margin: 40px + 50px)</li>
+  <li>选择器，属性可以嵌套</li>
+  <li>注释/* <em>/或//(/</em>!重要注释*/)有感叹号的注释压缩状态也会保留。</li>
+  <li>选择器可以继承</li>
+  <li>
+    <p>Mixin，类似C语言中的宏，是可重用的代码，可带参数和缺省值。</p>
+
+    <pre><code>    //定义
+    @mixin left($value: 10px){
+    float:left;
+    margin:$value
+    }
+    //调用
+    div{
+     @include left(20px);
+    }
+</code></pre>
+  </li>
+  <li>颜色函数</li>
+  <li>插入文件:使用@import来插入外部文件(@import “path/filename.scss”;)</li>
+  <li>条件语句@if  @else</li>
+  <li>
+    <p>for,while,each循环(“#{}”与ruby字符提取类似)　</p>
+
+    <pre><code> @for $i from 1 to 10{
+       .border-#{$i}{
+    border:#{$i}px solid blue;
+ }}
+</code></pre>
+  </li>
+  <li>
+    <p>自定义函数</p>
+
+    <pre><code>  @function double($n){
+      @return $n*2;
+   }
+   #sidebar{
+      width:double(5px);
+   }
+</code></pre>
+  </li>
+</ul>
+
+<h2 id="lesshttplessbootcsscomfeatures"><a href="http://less.bootcss.com/features/">Less语言特性</a></h2>
+<p>Less是CSS的扩展，完全兼容CSS语法。</p>
+
+<ul>
+  <li>变量(变量只能定义一次)</li>
+  <li>Extend</li>
+  <li>Mixin</li>
+  <li>带参数的Mixin</li>
+  <li>作为函数使用的Mixin</li>
+  <li>Import Directives</li>
+  <li>Import Options</li>
+  <li>Mixin Guards</li>
+  <li>CSS Guards</li>
+  <li>循环</li>
+  <li>合并</li>
+  <li>父选择符</li>
+</ul>
+
+</div>
+                                </div>
+                          </div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container-fluid text-center">
+				<p>关于我</p>
+			</div>
+		</div>
+	</body>
+</html>
