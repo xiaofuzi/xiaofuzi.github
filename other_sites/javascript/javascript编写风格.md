@@ -49,6 +49,7 @@ divClick() , addressSubmitButtonClick()。
 
 ###Getters 和 Setters
 Getters 和 setters 并不是必要的. 但只要使用它们了, 就请将 getters 命名成 getFoo() 形式, 将 setters 命名成 setFoo(value) 形式. (对于布尔类型的 getters, 使用 isFoo() 也可.)
+
 ###其它
 
 * 命名无特殊情况，请使用英语表示。切勿用汉语拼音。
@@ -142,6 +143,7 @@ var obj = {a: 1, b: 2, c: 3};  	//'{'之后无空格,'}'之前无空格.
 * 标点符号前后使用空格.
 
 ##注释
+
 ###顶层/文件注释
 
 顶层注释用于告诉不熟悉这段代码的读者这个文件中包含哪些东西. 应该提供文件的大体内容, 它的作者, 依赖关系和兼容性信息. 如下:

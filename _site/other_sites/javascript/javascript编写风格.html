@@ -11,9 +11,12 @@
 	<!--  bootstrap theme -->
 	<link rel="stylesheet" href="/assets/css/bootstrap.css"/>
 	<link rel="stylesheet" href="/assets/css/custom.css"/>
+       <link rel="stylesheet" href="/assets/css/back-to-top.css"/>
 
-
+       <script type="text/javascript" src="/assets/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+       
+       <script type="text/javascript" src="/assets/js/back-to-top.js"></script>
 </head>
 	<body>
 		<!-- the header theme -->
@@ -53,7 +56,12 @@
 	<div class="post-header">
 		<h1>Javascript编写风格指南</h1>
 	</div>
-	<h1 id="javascript">javascript编写风格指南</h1>
+	<div id="post-sidebar">
+		<ul>
+		</ul>
+	</div>
+	<div id="post-content">
+		<h1 id="javascript">javascript编写风格指南</h1>
 
 <h2 id="section">目录</h2>
 
@@ -76,8 +84,9 @@
 </ul>
 
 <h3 id="section-3">全局变量及常量规范</h3>
-<p>全局变量使用g作为前缀，如gUserName , gLoginTime。
-常量全部字母都大写，如： PI , COPYRIGHT。注:常量可存在于函数中，也可存在于全局。</p>
+<p>全局变量使用g作为前缀，如gUserName , gLoginTime。</p>
+
+<p>常量全部字母都大写，如： PI , COPYRIGHT。注:常量可存在于函数中，也可存在于全局。</p>
 
 <h3 id="section-4">函数命名规范</h3>
 <p>1.统一使用动词或动词加名词的形式。如getVersion() , submitForm()。</p>
@@ -103,8 +112,9 @@
 divClick() , addressSubmitButtonClick()。</p>
 
 <h3 id="getters--setters">Getters 和 Setters</h3>
-<p>Getters 和 setters 并不是必要的. 但只要使用它们了, 就请将 getters 命名成 getFoo() 形式, 将 setters 命名成 setFoo(value) 形式. (对于布尔类型的 getters, 使用 isFoo() 也可.)
-###其它</p>
+<p>Getters 和 setters 并不是必要的. 但只要使用它们了, 就请将 getters 命名成 getFoo() 形式, 将 setters 命名成 setFoo(value) 形式. (对于布尔类型的 getters, 使用 isFoo() 也可.)</p>
+
+<h3 id="section-8">其它</h3>
 
 <ul>
   <li>命名无特殊情况，请使用英语表示。切勿用汉语拼音。</li>
@@ -118,12 +128,13 @@ divClick() , addressSubmitButtonClick()。</p>
 
 <p>注：window对象中只可以定义全局变量，常量，类。</p>
 
-<h3 id="section-8">文件名</h3>
+<h3 id="section-9">文件名</h3>
 <p>文件名应该使用小写字符, 以避免在有些系统平台上不识别大小写的命名方式. 文件名以.js结尾, 不要包含除 - 和 _ 外的标点符号(使用 - 优于 _).</p>
 
-<h3 id="section-9">命名空间</h3>
-<p>为避免全局命名的冲突,在全局作用域上使用一个与项目或文件相关的名字来划分作用域空间.
-如:</p>
+<h3 id="section-10">命名空间</h3>
+<p>为避免全局命名的冲突,在全局作用域上使用一个与项目或文件相关的名字来划分作用域空间.</p>
+
+<p>如:</p>
 
 <pre><code> var sloth = {};
  sloth.sleep = function() {
@@ -131,7 +142,7 @@ divClick() , addressSubmitButtonClick()。</p>
  };
 </code></pre>
 
-<h3 id="section-10">对于名字很长的变量可使用别名,仅限于函数块作用域中.</h3>
+<h3 id="section-11">对于名字很长的变量可使用别名,仅限于函数块作用域中.</h3>
 
 <pre><code> /**
   * @constructor
@@ -153,9 +164,9 @@ divClick() , addressSubmitButtonClick()。</p>
  };
 </code></pre>
 
-<h2 id="section-11">代码格式化</h2>
+<h2 id="section-12">代码格式化</h2>
 
-<h3 id="section-12">大括号</h3>
+<h3 id="section-13">大括号</h3>
 
 <pre><code> //good way
  if (something) {
@@ -174,14 +185,16 @@ divClick() , addressSubmitButtonClick()。</p>
  }
 </code></pre>
 
-<h3 id="section-13">数组和对象的初始化</h3>
-<p>如果初始值不是很长,写在一行.
-var arr = [1, 2, 3];  		//’[‘之后无空格,’]’之前无空格. 
-var obj = {a: 1, b: 2, c: 3};  	//’{‘之后无空格,’}’之前无空格. </p>
+<h3 id="section-14">数组和对象的初始化</h3>
+<p>如果初始值不是很长,写在一行.</p>
+
+<p>var arr = [1, 2, 3];  		//’[‘之后无空格,’]’之前无空格. </p>
+
+<p>var obj = {a: 1, b: 2, c: 3};  	//’{‘之后无空格,’}’之前无空格. </p>
 
 <p>数组和对象多行初始化以及字符串跨越多行的情况.被拆分的行需要按统一的缩进对齐.</p>
 
-<h3 id="section-14">空行</h3>
+<h3 id="section-15">空行</h3>
 <p>使用空行来划分一组逻辑上相关联的代码片段.</p>
 
 <pre><code> doSomethingTo(x);
@@ -193,15 +206,16 @@ var obj = {a: 1, b: 2, c: 3};  	//’{‘之后无空格,’}’之前无空格.
  andNowWith(z);
 </code></pre>
 
-<h3 id="section-15">符号</h3>
+<h3 id="section-16">符号</h3>
 
 <ul>
   <li>单引号优先于双引号.</li>
   <li>标点符号前后使用空格.</li>
 </ul>
 
-<h2 id="section-16">注释</h2>
-<p>###顶层/文件注释</p>
+<h2 id="section-17">注释</h2>
+
+<h3 id="section-18">顶层/文件注释</h3>
 
 <p>顶层注释用于告诉不熟悉这段代码的读者这个文件中包含哪些东西. 应该提供文件的大体内容, 它的作者, 依赖关系和兼容性信息. 如下:</p>
 
@@ -212,7 +226,7 @@ var obj = {a: 1, b: 2, c: 3};  	//’{‘之后无空格,’}’之前无空格.
   */
 </code></pre>
 
-<h3 id="section-17">类注释</h3>
+<h3 id="section-19">类注释</h3>
 
 <p>每个类的定义都要附带一份注释, 描述类的功能和用法. 也需要说明构造器参数. 如果该类继承自其它类, 应该使用 @extends 标记. 如果该类是对接口的实现, 应该使用 @implements 标记.</p>
 
@@ -230,12 +244,15 @@ var obj = {a: 1, b: 2, c: 3};  	//’{‘之后无空格,’}’之前无空格.
 </code></pre>
 
 
+	</div>
 </div>
+<script type="text/javascript" src="/assets/js/post-sidebar.js"></script>
                                 </div>
                           </div>
 			</div>
 		</div>
 		<div id="footer">
+                      <p id="back-to-top"><a href="#top"><span></span>返回顶部</a></p>
 			<div class="container-fluid text-center">
 				<p>关于我</p>
 			</div>

@@ -9,7 +9,7 @@ title: 豆豆的文章
 		<div class="list-group">
     			{% for post in site.posts %}
     
-      			 <a href="{{ post.url }}" class="list-group-item">
+      			 <a href="{{ post.url }}" class="list-group-item" target="_blank">
       				{% for tag in post.tags %}
 					<span class="badge">{{ tag }}</span>
 				{% endfor %}

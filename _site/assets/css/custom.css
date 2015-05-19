@@ -117,6 +117,19 @@ body{
 	margin: 20px auto;
 }
 
+/*
+* post sidebar
+*
+#post-content{
+      margin-right: 150px;
+}
+#post-sidebar{
+  position: absolute;
+  right: 0px;
+  width: 150px;
+}*/
+
+
 .page_lists{
 	margin-top: 20px;
 }

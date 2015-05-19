@@ -8,7 +8,7 @@ title: 豆豆的文章，分类浏览。
 			{% assign post_lists = category[1] %} 
 			<h3>{{ post_lists[0].category }}</h3>
 				{% for blog in post_lists %}
-						<a href="{{ blog.url }}" class="list-group-item">{{ blog.title }}</a>
+						<a href="{{ blog.url }}" class="list-group-item" target="_blank">{{ blog.title }}</a>
 				{% endfor %}
 		<h2 >{{ categor }}</h2>	
 		{% endfor %}
