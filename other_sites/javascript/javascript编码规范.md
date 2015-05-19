@@ -223,6 +223,7 @@
 ###条件表达式和等号
 
 适当使用===和！==以及==和！=。
+
 条件表达式的强类型转换规则：
         
 * 对象被计算为true
@@ -293,7 +294,7 @@
     luke.setHeight(20)  //undefined
     
     //good
-  Jedi.prototype.jump = function() {
+     Jedi.prototype.jump = function() {
         this.jumping = true;
         return this;
     };
