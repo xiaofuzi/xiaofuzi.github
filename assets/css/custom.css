@@ -11,13 +11,13 @@ html, body {
 
 body {
   background-color: white;
-  /*font: 13.34px helvetica, arial, clean, sans-serif;
-  *font-size: small;
+  font: 16px helvetica, arial, sans-serif;
+  /*font-size: small;
   text-align: center;*/
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 120%;
+  font-size: 100%;
   font-weight: bold;
 }
 
@@ -35,11 +35,11 @@ a {
 }
 
 a:hover {
-  color: black;
+  color: rgb(87, 105, 60);
 }
 
 a:visited {
-  color: #a0a;
+  color: rgb(87, 105, 60);
 }
 
  #post ul{
@@ -75,6 +75,7 @@ body{
 	background-color: rgb(87, 105, 60);
 	height: 10%;
 	min-height: 50px;
+       font-weight: bold;
 }
 .navbar{
 	border-radius: 0px;
@@ -85,7 +86,7 @@ body{
     text-decoration: none;
 }
 #header a:hover {
-    color: rgb(62, 188, 202);
+    color: #35B558;
     font-size: 16px;
     background-color: rgb(87, 105, 60);
     text-decoration: none;
@@ -121,3 +122,38 @@ body{
 	list-style: none;
 }
 
+.post-title{
+  font-weight: bold;
+}
+.post-date{
+  margin-top: 5px;
+  color: gray;
+  font-size: 80%;
+}
+
+.post-header h1{
+  font-size: 120%;
+}
+
+/*
+* websites page  css style
+*/
+.website-nav{
+  font-size: 100%;
+}
+
+.website-nav li{
+  padding: 5px;
+  list-style: none;
+}
+.website-nav a {
+    text-decoration: none;
+}
+.website-nav a:hover {
+    color: rgb(87, 105, 60) !important;
+    text-decoration: none;
+}
+
+.website-nav a:visited{
+  color: gray;
+}
