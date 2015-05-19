@@ -1,0 +1,445 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+	<!-- Enable responsive viewport -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="keywords" content="豆豆, 小福, doudou" />
+        <meta name="description" content="豆豆的博客,记录足迹." />
+	<title>Javascript编码规范</title>
+
+	<!--  bootstrap theme -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+	<link rel="stylesheet" href="/assets/css/custom.css"/>
+
+
+	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+</head>
+	<body>
+		<!-- the header theme -->
+		<div id="header">
+                    <div class="container-fluid">
+			       <div class="navbar ">
+      					<ul class="nav navbar-nav">
+                                       <li>
+                                              <a href="/" class="navbar-brand">豆豆</a>
+                                       </li>
+      						<li>
+          						<a href="/index.html">首页</a>
+        					</li>
+        					<li>
+          							<a href="/category.html">分类浏览</a>
+        					</li>
+        					<li>
+          							<a href="/websites.html">网址收藏</a>
+        					</li>
+        					<li >
+          							<a href="/books.html">书单</a>
+        					</li>
+        					<li><a href="/mylab.html" >实验室</a></li>
+      					</ul>
+      					<ul class="nav navbar-nav navbar-right">
+        						<li><a href="#" >生活</a></li>
+        						<li><a href="#" >关于</a></li>
+      					</ul>
+    				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                      <div id="post">
+	<div class="post-header">
+		<h1>Javascript编码规范</h1>
+	</div>
+	<h1 id="javascript">Javascript编码规范</h1>
+
+<h2 id="section">目录</h2>
+
+<ul>
+  <li>类型</li>
+  <li>对象</li>
+  <li>数组</li>
+  <li>字符串</li>
+  <li>函数</li>
+  <li>属性</li>
+  <li>变量</li>
+  <li>条件表达式</li>
+  <li>块</li>
+  <li>构造器</li>
+  <li>方法返回值(this)</li>
+  <li>事件</li>
+  <li>模块</li>
+</ul>
+
+<h3 id="section-1">类型</h3>
+
+<ul>
+  <li>
+    <p>原始值：按值传递
+  string/number/boolean/null/undefined
+  注:null和undefine是不同的.</p>
+  </li>
+  <li>
+    <p>复杂类型：按引用传递
+  object/array/function</p>
+  </li>
+</ul>
+
+<h3 id="section-2">对象</h3>
+
+<pre><code>使用字面值创建对象
+//bad
+var item = new Object();
+//good
+var item = {};
+
+不要使用保留字作为键
+//bad
+var superman = {
+    class:'superhero',
+    default:{ clark:'kent' },
+    private: true
+}
+
+//good
+var superman = {
+    klass: 'superhero',
+    defaults:{ clark: 'kent' },
+    hidden:true
+};
+</code></pre>
+
+<h3 id="section-3">数组：</h3>
+
+<pre><code>使用字面量创建数组
+//bad
+var items = new Array();
+
+//good
+var items = [];
+
+数组长度不知时，使用push添加元素
+var someStack = [];
+//bad
+someStack[someStack.length] = 'abcdefg';
+
+//good
+someStack.push('abcdefg');
+
+使用slice拷贝数组
+var len = items.length,
+        itemsCopy = [],
+        i;
+//bad
+for(i = 0; i &lt; len; i++){
+    itemsCopy[i] = items[i];
+}
+//good
+itemsCopy = items.slice();
+</code></pre>
+
+<h3 id="section-4">字符串</h3>
+
+<pre><code>对字符串使用单引号''
+//bad
+var name = "Bob Parr";
+
+//good
+var name = 'Bob Parr';
+
+编程时使用join而不是字符串连接来构建字符串：
+var items,
+        messages,
+        length, i;
+messages = [{
+    state: 'success',
+    message: 'This one worked.'
+    },{
+    state: 'success',
+    message:'This one worked as well.'
+    },{
+    state:'error',
+    message: 'This one did not work.'
+    } ];
+    length = messages.length;
+    //bad
+    function inbox(messages){
+        items = '&lt;ul&gt;';
+        for(i = 0;i &lt; length; i++){
+            items += '&lt;li&gt;' + messages[i].message + '&lt;/li&gt;';
+        }
+    return items + '&lt;/ul&gt;';
+    }
+
+    //good
+    function inbox(messages){
+        items = [];
+        for(i = 0; i &lt; length; i++){
+            items[i] = messages[i].message;
+        }
+        return '&lt;ul&gt;&lt;li&gt;' + items.join('&lt;/li&gt;&lt;li&gt;')+'&lt;/li&gt;&lt;/ul&gt;';
+    }
+</code></pre>
+
+<h3 id="section-5">函数表达式：</h3>
+
+<pre><code>    //匿名函数表达式
+    var anonymous = function(){
+        return true;
+    };
+    //有名函数表达式
+    var named = function named(){
+        return true;
+    };
+
+    //立即调用函数表达式
+    (function(){
+        console.log('Welcome to the internet. Please follow me.');
+    })();
+</code></pre>
+
+<p>不要在一个非函数块里面声明一个函数，应该把那个函数赋给一个变                 量。浏览器让你这么做，但是解析的情况是不同的。</p>
+
+<pre><code>    //bad
+    if(currentUser){
+        function test(){
+            console.log('Nope.');
+        }
+    }
+
+    //good
+    if(currentUser){
+        var test = function test(){
+            console.log('Yup.');
+        };
+    }
+</code></pre>
+
+<p>请勿把参数命名为 arguments,这会对函数内的 arguments对象产生影响。</p>
+
+<pre><code>    //bad
+    function nope(name, options, arguments){
+        //.....stuff....
+    }
+    //good
+    function yup(name, options, args){
+        //...stuff.....
+    }
+</code></pre>
+
+<h3 id="section-6">属性：</h3>
+
+<p>当使用变量访问属性时使用中括号。</p>
+
+<pre><code>    var luke = {
+        jedi: true,
+        age: 28
+    };
+    function getProp(prop){
+        return luke[prop];
+    }
+    var isJedi = getProp('jedi');
+</code></pre>
+
+<h3 id="section-7">变量：</h3>
+<p>总是使用var 来声明变量，避免产生全局变量，污染全局命名空间。</p>
+
+<pre><code>    //bad
+    superPower = new SuperPower();
+
+    //good
+    var superPower = new SuperPower();
+</code></pre>
+
+<p>使用一个var以及新行声明多个变量，缩进四个空格</p>
+
+<pre><code>    //bad
+    var items = getItems();
+    var goSportsTeam = true;
+    var dragonball = 'z';
+
+    //good
+    var items = getItems(),
+        goSportsTeam = true,
+        dragonball = 'z';
+</code></pre>
+
+<p>最后再声明未赋值的变量</p>
+
+<pre><code>    //bad
+    var i, len, dragonball,
+        items = getItems(),
+        goSportsTeam = true;
+    
+    //bad
+    var i, items = getItems(),
+        dragonball,
+        goSportsTeam = true,
+        len;
+
+    //good
+    var items = getItems(),
+        goSportsTeam = true,
+        dragonball,
+        length,
+        i;
+</code></pre>
+
+<h3 id="section-8">条件表达式和等号</h3>
+
+<p>适当使用===和！==以及==和！=。
+条件表达式的强类型转换规则：</p>
+
+<ul>
+  <li>对象被计算为true</li>
+  <li>Undefined被计算为false</li>
+  <li>Null被计算为false</li>
+  <li>布尔值被计算为布尔的值</li>
+  <li>数字如果是+0, -0,NaN被计算为false</li>
+  <li>字符如果是空字符串，则被计算为false，否则为true</li>
+  <li>字符串如果是空字符串，则被计算为false，否则为true</li>
+</ul>
+
+<h3 id="section-9">块的使用</h3>
+<p>给所有多行的块使用大括号</p>
+
+<pre><code>    //bad
+    if(test)
+        return false;
+    //good
+    if(test)   return false;
+
+    //good
+    if(test){
+     return false;
+    }
+
+    //good
+    function(){
+        return false;
+    }
+</code></pre>
+
+<h3 id="section-10">构造器</h3>
+<p>给对象原型分配方法，而不是用一个新的对象覆盖原型，覆盖原型会是继承出现问题。</p>
+
+<pre><code>    function Jedi(){
+        console.log('new jedi');
+    }
+    //bad
+    Jedi.prototype = {
+        fight: function fight() {
+            console.log('fighting');
+    },
+    block: function block(){
+        console.log('blocking');
+    }
+};
+
+//good
+Jedi.prototype.fight = function fight(){
+    console.log('fighting');
+};
+Jedi.prototype.block = function block(){
+    console.log('blocking');
+};
+</code></pre>
+
+<p>方法可以返回this帮助方法链</p>
+
+<pre><code>//bad
+Jedi.prototype.jump = function(){
+    this.jumping = true;
+    return true;
+};
+Jedi.prototype.setHeight = function(height){
+    this.height = height;
+};
+
+
+var luke = new Jedi();
+luke.jump();   //true
+luke.setHeight(20)  //undefined
+
+//good   Jedi.prototype.jump = function() {
+    this.jumping = true;
+    return this;
+};
+
+Jedi.prototype.setHeight = function(height){
+    this.height = height;
+    return this;
+}
+luke.jump()
+    .setHeight(20);    //实现方法链调用
+
+自定义toString()方法，但需确保不会有副作用
+function Jedi(options){
+    options || (options = {});
+    this.name = options.name || 'no name';
+}
+
+Jedi.prototype.getName = function getName(){
+    return this.name;
+};
+Jedi.prototype.toString = function toString(){
+    return 'Jedi - ' + this.getName(); };
+</code></pre>
+
+<h3 id="section-11">事件</h3>
+<p>当给事件附加数据时，传入一个哈希而不是原始值，这可以让后面的贡献者加入更多数据到事件数据
+里而不用找出并更新那个事件的事件处理器。</p>
+
+<pre><code>//bad
+$(this).trigger('listingUpdated', listing.id);
+$(this).on('listingUpdated', function(e,listingId){
+    //do something with listingId
+});
+
+//good
+$(this).trigger('listingUpdated', {listingId: listing.id});
+
+$(this).on('listingUpdated', function(e, data){
+    //do something with data.listingId
+});
+</code></pre>
+
+<h3 id="section-12">模块</h3>
+<p>模块应该以 ‘;’ 开始，这保证了如果一个有问题的模块忘记包含最后的分号在合并后刽出现错误。
+这个文件应该以驼峰命名，并在同名文件夹下，同时导出的时候名字一致。
+加入一个名为noConflict()的方法来设置导出的模块为之前的版本并返回它。
+总在模块顶部声明 ‘use strict’;</p>
+
+<pre><code> ;function(global) {
+   'use strict';
+
+   var previousFancyInput = global.FancyInput;
+
+   function FancyInput(options) {
+     this.options = options || {};
+   }
+
+   FancyInput.noConflict = function noConflict() {
+     global.FancyInput = previousFancyInput;
+     return FancyInput;
+   };
+
+   global.FancyInput = FancyInput;
+ }(this);
+</code></pre>
+
+
+</div>
+                                </div>
+                          </div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container-fluid text-center">
+				<p>关于我</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -29,18 +29,21 @@ p {
   margin: 1em 0;
 }
 
-a {
-  color: #00a;
+ a {
+  color: #555;
   text-decoration: none;
 }
 
-a:hover {
-  color: rgb(87, 105, 60);
+ a:hover {
+  color:  #0095DD;
+  text-decoration: none;
 }
 
-a:visited {
-  color: rgb(87, 105, 60);
-}
+
+/*清除浮动*/
+.cf{zoom:1}
+.cf:after{content:'';display:block;clear:both;height:0;overflow:hidden;visibility:hidden}
+
 
  #post ul{
   list-style-type: none;
@@ -86,7 +89,7 @@ body{
     text-decoration: none;
 }
 #header a:hover {
-    color: #35B558;
+    color: #0095DD;
     font-size: 16px;
     background-color: rgb(87, 105, 60);
     text-decoration: none;
@@ -136,6 +139,22 @@ body{
 }
 
 /*
+* 重载bootstrap css style
+*/
+.list-group a {
+  color: #555;
+  text-decoration: none;
+}
+
+.list-group a:hover {
+  color:  #0095DD;
+  text-decoration: none;
+}
+
+.badge{
+   background-color: rgb(87, 105, 60);
+}
+/*
 * websites page  css style
 */
 .website-nav{
@@ -146,14 +165,35 @@ body{
   padding: 5px;
   list-style: none;
 }
-.website-nav a {
-    text-decoration: none;
-}
-.website-nav a:hover {
-    color: rgb(87, 105, 60) !important;
-    text-decoration: none;
+
+
+/*
+* books page style
+*/
+.book-content{
+  width: 620px;
+  padding: 5px;
+  border: 1px solid #DDD;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
-.website-nav a:visited{
-  color: gray;
+.book-img {
+  width: 100px;
+  height:  130px;
+  float: left;
+}
+.book-img img{
+  width: 100px;
+  height:  130px;
+}
+
+.book-content .book-message{
+  width: 500px;
+  height:  130px;
+  float: left;
+}
+.book-content .book-message p{
+      margin: 5px;
+      font-size:  80%;
 }

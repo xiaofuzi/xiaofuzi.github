@@ -1,0 +1,244 @@
+<!DOCTYPE>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html" charset="utf-8"/>
+	<!-- Enable responsive viewport -->
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="keywords" content="豆豆, 小福, doudou" />
+        <meta name="description" content="豆豆的博客,记录足迹." />
+	<title>Javascript编写风格指南</title>
+
+	<!--  bootstrap theme -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.css"/>
+	<link rel="stylesheet" href="/assets/css/custom.css"/>
+
+
+	<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+</head>
+	<body>
+		<!-- the header theme -->
+		<div id="header">
+                    <div class="container-fluid">
+			       <div class="navbar ">
+      					<ul class="nav navbar-nav">
+                                       <li>
+                                              <a href="/" class="navbar-brand">豆豆</a>
+                                       </li>
+      						<li>
+          						<a href="/index.html">首页</a>
+        					</li>
+        					<li>
+          							<a href="/category.html">分类浏览</a>
+        					</li>
+        					<li>
+          							<a href="/websites.html">网址收藏</a>
+        					</li>
+        					<li >
+          							<a href="/books.html">书单</a>
+        					</li>
+        					<li><a href="/mylab.html" >实验室</a></li>
+      					</ul>
+      					<ul class="nav navbar-nav navbar-right">
+        						<li><a href="#" >生活</a></li>
+        						<li><a href="#" >关于</a></li>
+      					</ul>
+    				</div>
+			</div>
+		</div>
+		<div id="content">
+			<div class="container-fluid">
+				<div class="row">
+                                <div class="col-md-8 col-md-offset-2">
+                                      <div id="post">
+	<div class="post-header">
+		<h1>Javascript编写风格指南</h1>
+	</div>
+	<h1 id="javascript">javascript编写风格指南</h1>
+
+<h2 id="section">目录</h2>
+
+<ul>
+  <li>命名风格</li>
+  <li>代码格式化</li>
+  <li>注释</li>
+</ul>
+
+<h2 id="section-1">命名风格</h2>
+
+<p>包括全局变量，局部变量，类变量，函数参数等的命名；</p>
+
+<h3 id="section-2">变量命名规范</h3>
+<p>变量命名使用有意义的单词和驼峰式命名。</p>
+
+<ul>
+  <li>临时变量简写：str,num,bol,fun,arr。</li>
+  <li>循环变量简写：i , j , k。</li>
+</ul>
+
+<h3 id="section-3">全局变量及常量规范</h3>
+<p>全局变量使用g作为前缀，如gUserName , gLoginTime。
+常量全部字母都大写，如： PI , COPYRIGHT。注:常量可存在于函数中，也可存在于全局。</p>
+
+<h3 id="section-4">函数命名规范</h3>
+<p>1.统一使用动词或动词加名词的形式。如getVersion() , submitForm()。</p>
+
+<p>2.涉及返回逻辑值的函数可以使用is , has 等表示逻辑的词语代替动词。
+内部函数前加上 ‘_‘前缀。</p>
+
+<p>3.可选参数以 ‘opt’ 开头.</p>
+
+<h3 id="section-5">类的命名</h3>
+
+<ul>
+  <li>类名首字母大写。</li>
+  <li>属性名为具有一定意义的名词。私有属性加 “_“。</li>
+  <li>方法名为有意义的动词[+名词]，首字母小写。私有方法加 ‘_”.</li>
+</ul>
+
+<h3 id="section-6">对象方法命名</h3>
+<p>对象方法命名使用 “对象类名 + 动词[+ 名词]” 的形式。如addressGetEmail。Todo:考虑到对象名可能比较长,可以使用对象名的简写形式.</p>
+
+<h3 id="section-7">事件响应函数</h3>
+<p>事件响应函数以 “触发事件对象名 + 事件名或者模块名 + 直接触发事件对象名 + 事件名” 的形式。如：
+divClick() , addressSubmitButtonClick()。</p>
+
+<h3 id="getters--setters">Getters 和 Setters</h3>
+<p>Getters 和 setters 并不是必要的. 但只要使用它们了, 就请将 getters 命名成 getFoo() 形式, 将 setters 命名成 setFoo(value) 形式. (对于布尔类型的 getters, 使用 isFoo() 也可.)
+###其它</p>
+
+<ul>
+  <li>命名无特殊情况，请使用英语表示。切勿用汉语拼音。</li>
+  <li>变量名应该明确必要，避免容易混淆的缩写。</li>
+  <li>应该避免双重否定意义的变量，例如：bIsNotError, bIsNotFound，不可取。</li>
+  <li>变量的生命周期保持可用范围最小。</li>
+  <li>循环变量在循环中定义。</li>
+  <li>避免在条件中执行语句。</li>
+  <li>重复使用的具有相同意义的数字，用变量代替。</li>
+</ul>
+
+<p>注：window对象中只可以定义全局变量，常量，类。</p>
+
+<h3 id="section-8">文件名</h3>
+<p>文件名应该使用小写字符, 以避免在有些系统平台上不识别大小写的命名方式. 文件名以.js结尾, 不要包含除 - 和 _ 外的标点符号(使用 - 优于 _).</p>
+
+<h3 id="section-9">命名空间</h3>
+<p>为避免全局命名的冲突,在全局作用域上使用一个与项目或文件相关的名字来划分作用域空间.
+如:</p>
+
+<pre><code> var sloth = {};
+ sloth.sleep = function() {
+   ...
+ };
+</code></pre>
+
+<h3 id="section-10">对于名字很长的变量可使用别名,仅限于函数块作用域中.</h3>
+
+<pre><code> /**
+  * @constructor
+  */
+ some.long.namespace.MyClass = function() {
+ };
+
+ /**
+  * @param {some.long.namespace.MyClass} a
+  */
+ some.long.namespace.MyClass.staticHelper = function(a) {
+   ...
+ };
+
+ myapp.main = function() {
+   var MyClass = some.long.namespace.MyClass;
+   var staticHelper = some.long.namespace.MyClass.staticHelper;
+   staticHelper(new MyClass());
+ };
+</code></pre>
+
+<h2 id="section-11">代码格式化</h2>
+
+<h3 id="section-12">大括号</h3>
+
+<pre><code> //good way
+ if (something) {
+   // ...
+ } else {
+   // ...
+ }
+ //bad
+ if(something)
+ {
+     //...
+ }
+ else
+ {
+     //...
+ }
+</code></pre>
+
+<h3 id="section-13">数组和对象的初始化</h3>
+<p>如果初始值不是很长,写在一行.
+var arr = [1, 2, 3];  		//’[‘之后无空格,’]’之前无空格. 
+var obj = {a: 1, b: 2, c: 3};  	//’{‘之后无空格,’}’之前无空格. </p>
+
+<p>数组和对象多行初始化以及字符串跨越多行的情况.被拆分的行需要按统一的缩进对齐.</p>
+
+<h3 id="section-14">空行</h3>
+<p>使用空行来划分一组逻辑上相关联的代码片段.</p>
+
+<pre><code> doSomethingTo(x);
+ doSomethingElseTo(x);
+ andThen(x);
+
+ nowDoSomethingWith(y);
+
+ andNowWith(z);
+</code></pre>
+
+<h3 id="section-15">符号</h3>
+
+<ul>
+  <li>单引号优先于双引号.</li>
+  <li>标点符号前后使用空格.</li>
+</ul>
+
+<h2 id="section-16">注释</h2>
+<p>###顶层/文件注释</p>
+
+<p>顶层注释用于告诉不熟悉这段代码的读者这个文件中包含哪些东西. 应该提供文件的大体内容, 它的作者, 依赖关系和兼容性信息. 如下:</p>
+
+<pre><code> /**
+  * @fileoverview Description of file, its uses and information
+  * about its dependencies.
+  * @author user@xxx.com
+  */
+</code></pre>
+
+<h3 id="section-17">类注释</h3>
+
+<p>每个类的定义都要附带一份注释, 描述类的功能和用法. 也需要说明构造器参数. 如果该类继承自其它类, 应该使用 @extends 标记. 如果该类是对接口的实现, 应该使用 @implements 标记.</p>
+
+<pre><code> /**
+  * Class making something fun and easy.
+  * @param {string} arg1 An argument that makes this more interesting.
+  * @param {Array.&lt;number&gt;} arg2 List of numbers to be processed.
+  * @constructor
+  * @extends {goog.Disposable}
+  */
+ project.MyClass = function(arg1, arg2) {
+   // ...
+ };
+ goog.inherits(project.MyClass, goog.Disposable);
+</code></pre>
+
+
+</div>
+                                </div>
+                          </div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="container-fluid text-center">
+				<p>关于我</p>
+			</div>
+		</div>
+	</body>
+</html>
