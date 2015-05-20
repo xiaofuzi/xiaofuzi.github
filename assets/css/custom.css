@@ -167,18 +167,6 @@ body{
 .badge{
    background-color: rgb(87, 105, 60);
 }
-/*
-* websites page  css style
-*/
-.website-nav{
-  font-size: 100%;
-}
-
-.website-nav li{
-  padding: 5px;
-  list-style: none;
-}
-
 
 /*
 * books page style
