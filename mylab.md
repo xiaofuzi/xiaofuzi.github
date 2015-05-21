@@ -1,5 +1,5 @@
 ---
-   layout: default
+   layout: post
    title: Programm lab
 ---
 
@@ -11,3 +11,7 @@
 		
 	</ul>
 </div>
+
+##豆豆的实验
+
+* [node web framework(借鉴Rail开发哲学)](https://github.com/xiaofuzi/nodeApp)
