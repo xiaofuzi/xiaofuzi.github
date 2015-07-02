@@ -7,6 +7,7 @@
 
 html, body {
   height: 100%;
+  color: #444;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-size: 100%;
   font-weight: bold;
+  color: black;
 }
 
 h1 {
@@ -30,12 +32,12 @@ p {
 }
 
  a {
-  color: #555;
+  color: #444;
   text-decoration: none;
 }
 
  a:hover {
-  color:  #0095DD;
+  color:  black;
   text-decoration: none;
 }
 
@@ -48,6 +50,7 @@ p {
  #post ul{
   list-style-type: none;
   margin-bottom: 2em;
+  padding-left: 5px;
 }
 
  #post li {
@@ -58,6 +61,9 @@ p {
     color: #aaa;
     font-family: Monaco, "Courier New", monospace;
     font-size: 80%;
+  }
+  #post  p{
+    padding-left: 5px;
   }
 /*
 * 全局样式
@@ -71,27 +77,57 @@ body{
 	height: 100%;
 }
 
+img{
+  width: 100%;
+}
+
+/*
+* black layer
+*/
+ #gray_back{
+            display: none;
+            background-color: #000000;
+            opacity: 0.7;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 99;
+        }
+
 /*
 * 自定义头部导航的布局
 */
 #header{
-	background-color: rgb(87, 105, 60);
-	height: 10%;
-	min-height: 50px;
+	border-width: 0;
+       border-style: solid;
+       border-top: 1px solid transparent;
+       border-bottom: 1px solid #ddd;
+       background-color: white;
+	height: 50px;
        font-weight: bold;
 }
 .navbar{
 	border-radius: 0px;
+       margin-left: -50px;
+       margin-right: -50px;
+}
+@media (max-width: 1000px){
+  .navbar{
+      margin: 0px;
+      margin-left: -15px;
+  }
 }
 
-#header a {
+
+/*#header a {
     color: white;
     text-decoration: none;
-}
+}*/
 #header a:hover {
-    color: #0095DD;
+    color: #444;
     font-size: 16px;
-    background-color: rgb(87, 105, 60);
+    background-color: #ddd;
     text-decoration: none;
 }
 /*
@@ -118,6 +154,25 @@ body{
 }
 
 /*
+* content style setting
+*/
+#content .page_lists{
+  margin-left: -15px;
+  margin-right: -15px;
+}
+#content .page_lists a{
+  padding: 5px; 
+  margin-left: 20px;
+  margin-right: 20px;
+}
+#content .page_lists .post-tags{
+  position: absolute;
+  bottom:16px;
+  right: 15px;
+  font-size: 8px;
+}
+
+/*
 * post sidebar
 *
 #post-content{
@@ -136,10 +191,11 @@ body{
 
 .page_lists li{
 	list-style: none;
+       padding-left: 5px;
 }
 
 .post-title{
-  font-weight: bold;
+  font-weight: normal;
 }
 .post-date{
   margin-top: 5px;
@@ -160,29 +216,39 @@ body{
 }
 
 .list-group a:hover {
-  color:  #0095DD;
+  color:  black;
   text-decoration: none;
 }
 
+
 .badge{
-   background-color: rgb(87, 105, 60);
+   margin-top: 20px;
+   background-color: #444;
+   opacity:0.5;
+}
+
+/*
+* category page
+*/
+.category a{
+  padding: 5px;
+  display: block;
 }
 
 /*
 * books page style
 */
 .book-content{
-  width: 620px;
   padding: 5px;
-  border: 1px solid #DDD;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
+  margin-bottom:  -1px;
+  border-top: 1px solid #DDD;
+  border-bottom: 1px solid #DDD;
 }
 
 .book-img {
   width: 100px;
   height:  130px;
-  float: left;
+  float: right;
 }
 .book-img img{
   width: 100px;
@@ -197,4 +263,99 @@ body{
 .book-content .book-message p{
       margin: 5px;
       font-size:  80%;
+}
+
+
+@media (max-width: 768px){
+  /*导航栏隐藏*/
+  #header{
+       position: fixed;
+       top:-42px;
+       left: -200px;
+        width: 200px;
+        height: 100%;
+        z-index: 999;
+        color: black;
+        background-color: #fff;
+        border:1px #ddd solid;
+  }
+  #header .navbar ul{
+    margin: 0px;
+    padding:0px;
+  }
+  #header .navbar li{
+      width: 198px;
+      height: 40px;
+      text-align: left;
+      border-bottom:1px #ddd solid;
+  }
+  #header .navbar-brand{
+    display: none;
+  }
+  #header li a:hover {
+    color: black;
+    font-size: 16px;
+    text-decoration: none;
+}
+#sidebar{
+  position: fixed;
+  top:15px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
+  background: url(../images/menu.png) no-repeat 50% 50%;
+  background-size: 140%;
+}
+
+
+/*
+* content style setting
+*/
+#content .page_lists{
+  margin-left: -15px;
+  margin-right: -15px;
+}
+#content .page_lists a{
+  padding: 5px; 
+}
+#content .page_lists .post-tags{
+  position: absolute;
+  bottom:16px;
+  right: 0;
+  font-size: 8px;
+}
+
+
+/*
+* category style
+*/
+.category a{
+  border-top:1px #ddd solid;
+  border-bottom:1px #ddd solid;
+  margin-bottom: -1px;
+}
+
+#footer{
+  
+}
+
+/*
+* book page style
+*/
+.book-content{
+  width: 100%;
+  padding: 5px;
+}
+.book-img{
+  width: 30%;
+  margin-right: 5px;
+}
+.book-img img{
+  background-size: 100%;
+}
+.book-content .book-message{
+  width: 68%;
+}
 }

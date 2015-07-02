@@ -7,8 +7,7 @@
 	<h1>Web 前端</h1>
 	<ul >
 		<li><a href="./other_sites/javascript/javascript编写风格.html" target="_blank">Javascript编写风格</a></li>
-		<li><a href="./other_sites/javascript/javascript编码规范.html" target="_blank">Javascript编码规范</a></li>
-		
+		<li><a href="./other_sites/javascript/javascript编码规范.html" target="_blank">Javascript编码规范</a></li>		
 	</ul>
 </div>
 
